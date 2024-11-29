@@ -1,6 +1,7 @@
 package vn.iotstar.entity;
 
 import java.time.LocalDateTime;
+import java.util.Locale.Category;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,25 +18,37 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-
 @Entity
-@Table(name = "Cart")
-public class Cart {
+@Table(name = "Products")
+public class Product {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer cartId;
+	@Column(name = "ProductID")
+	private int productId;
 
-	@ManyToOne
-	@JoinColumn(name = "UserId", nullable = false)
-	private User user;
+	@Column(nullable = false, length = 100)
+	private String name;
 
-	@ManyToOne
-	@JoinColumn(name = "ProductId", nullable = false)
-	private Product product;
+	@Column(columnDefinition = "NVARCHAR(MAX)")
+	private String description;
 
 	@Column(nullable = false)
-	private int quantity;
+	private Double price;
+
+	@Column(nullable = false)
+	private int stock;
+
+	@ManyToOne
+	@JoinColumn(name = "CategoryId")
+	private Category category;
+
+	@Column(length = 255)
+	private String imageUrl;
+
+	@ManyToOne
+	@JoinColumn(name = "ShopID")
+	private Shop shop;
 
 	@Column(nullable = false, columnDefinition = "DATETIME DEFAULT GETDATE()")
 	private LocalDateTime createdAt;

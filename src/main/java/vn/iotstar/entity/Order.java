@@ -17,25 +17,23 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-
 @Entity
-@Table(name = "Cart")
-public class Cart {
+@Table(name = "Orders")
+public class Order {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer cartId;
+	private int orderId;
 
 	@ManyToOne
-	@JoinColumn(name = "UserId", nullable = false)
+	@JoinColumn(name = "userId", nullable = false)
 	private User user;
 
-	@ManyToOne
-	@JoinColumn(name = "ProductId", nullable = false)
-	private Product product;
+	@Column(nullable = false)
+	private Double totalAmount;
 
 	@Column(nullable = false)
-	private int quantity;
+	private String orderStatus;
 
 	@Column(nullable = false, columnDefinition = "DATETIME DEFAULT GETDATE()")
 	private LocalDateTime createdAt;

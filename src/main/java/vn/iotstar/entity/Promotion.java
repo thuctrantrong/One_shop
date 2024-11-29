@@ -1,9 +1,11 @@
 package vn.iotstar.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,25 +19,32 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-
 @Entity
-@Table(name = "Cart")
-public class Cart {
+@Table(name = "Promotions")
+public class Promotion {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer cartId;
+	private int promotionId;
 
-	@ManyToOne
-	@JoinColumn(name = "UserId", nullable = false)
-	private User user;
+	@Column(nullable = false, length = 100)
+	private String name;
 
-	@ManyToOne
-	@JoinColumn(name = "ProductId", nullable = false)
-	private Product product;
+	@Column(nullable = false, length = 15)
+	private String discountType;
 
 	@Column(nullable = false)
-	private int quantity;
+	private Double discountValue;
+
+	@Column(nullable = false)
+	private LocalDate startDate;
+
+	@Column(nullable = false)
+	private LocalDate endDate;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ShopID")
+	private Shop shop;
 
 	@Column(nullable = false, columnDefinition = "DATETIME DEFAULT GETDATE()")
 	private LocalDateTime createdAt;

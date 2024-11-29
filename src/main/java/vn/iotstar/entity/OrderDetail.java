@@ -1,7 +1,5 @@
 package vn.iotstar.entity;
 
-import java.time.LocalDateTime;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,16 +17,16 @@ import lombok.NoArgsConstructor;
 @Data
 
 @Entity
-@Table(name = "Cart")
-public class Cart {
+@Table(name = "OrderDetails")
+public class OrderDetail {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer cartId;
+	private int orderDetailId;
 
 	@ManyToOne
-	@JoinColumn(name = "UserId", nullable = false)
-	private User user;
+	@JoinColumn(name = "OrderId", nullable = false)
+	private Order order;
 
 	@ManyToOne
 	@JoinColumn(name = "ProductId", nullable = false)
@@ -37,7 +35,7 @@ public class Cart {
 	@Column(nullable = false)
 	private int quantity;
 
-	@Column(nullable = false, columnDefinition = "DATETIME DEFAULT GETDATE()")
-	private LocalDateTime createdAt;
+	@Column(nullable = false)
+	private Double price;
 
 }

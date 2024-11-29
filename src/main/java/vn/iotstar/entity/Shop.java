@@ -8,7 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,25 +17,24 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-
 @Entity
-@Table(name = "Cart")
-public class Cart {
+@Table(name = "Shops")
+public class Shop {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer cartId;
+	@Column(name = "ShopID")
+	private int shopId;
 
-	@ManyToOne
-	@JoinColumn(name = "UserId", nullable = false)
-	private User user;
+	@OneToOne
+	@JoinColumn(name = "OwnerID", nullable = false)
+	private User owner;
 
-	@ManyToOne
-	@JoinColumn(name = "ProductId", nullable = false)
-	private Product product;
+	@Column(nullable = false, length = 100)
+	private String name;
 
-	@Column(nullable = false)
-	private int quantity;
+	@Column(columnDefinition = "NVARCHAR(MAX)")
+	private String description;
 
 	@Column(nullable = false, columnDefinition = "DATETIME DEFAULT GETDATE()")
 	private LocalDateTime createdAt;
