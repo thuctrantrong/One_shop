@@ -1,6 +1,6 @@
 package vn.iotstar.entity;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,31 +18,30 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "Reviews")
+@Table(name = "reviews")
 public class Review {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int reviewId;
+	@Column(name = "ReviewID")
+	private Integer reviewId;
 
 	@ManyToOne
-	@JoinColumn(name = "ProductId", nullable = false)
+	@JoinColumn(name = "ProductID", referencedColumnName = "ProductID")
 	private Product product;
 
 	@ManyToOne
-	@JoinColumn(name = "UserId", nullable = false)
+	@JoinColumn(name = "UserID", referencedColumnName = "UserID")
 	private User user;
 
-	@Column(nullable = false)
-	private int rating;
+	@Column(name = "Rating")
+	private Integer rating;
 
-	@Column(columnDefinition = "NVARCHAR(MAX)")
+	@Column(name = "Comment", columnDefinition = "TEXT")
 	private String comment;
 
-	@Column(length = 255)
+	@Column(name = "MediaURL", length = 255)
 	private String mediaUrl;
 
-	@Column(nullable = false, columnDefinition = "DATETIME DEFAULT GETDATE()")
-	private LocalDateTime createdAt;
-
+	@Column(name = "CreatedAt")
+	private LocalDate createdAt;
 }

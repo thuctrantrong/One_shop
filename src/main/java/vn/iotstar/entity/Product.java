@@ -1,7 +1,6 @@
 package vn.iotstar.entity;
 
-import java.time.LocalDateTime;
-import java.util.Locale.Category;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,42 +14,42 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Entity
-@Table(name = "Products")
+@Table(name = "products")
 public class Product {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ProductID")
-	private int productId;
+	private Integer productId;
 
-	@Column(nullable = false, length = 100)
+	@Column(name = "Name", length = 100)
 	private String name;
 
-	@Column(columnDefinition = "NVARCHAR(MAX)")
+	@Column(name = "Description", columnDefinition = "TEXT")
 	private String description;
 
-	@Column(nullable = false)
+	@Column(name = "Price")
 	private Double price;
 
-	@Column(nullable = false)
-	private int stock;
+	@Column(name = "Stock")
+	private Integer stock;
 
 	@ManyToOne
-	@JoinColumn(name = "CategoryId")
+	@JoinColumn(name = "CategoryID", referencedColumnName = "CategoryID")
 	private Category category;
 
-	@Column(length = 255)
+	@Column(name = "ImageURL", length = 255)
 	private String imageUrl;
 
 	@ManyToOne
-	@JoinColumn(name = "ShopID")
+	@JoinColumn(name = "ShopID", referencedColumnName = "ShopID")
 	private Shop shop;
 
-	@Column(nullable = false, columnDefinition = "DATETIME DEFAULT GETDATE()")
-	private LocalDateTime createdAt;
+	@Column(name = "CreatedAt")
+	private LocalDate createdAt;
 
 }

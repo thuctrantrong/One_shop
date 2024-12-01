@@ -1,11 +1,9 @@
 package vn.iotstar.entity;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,33 +18,32 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "Promotions")
+@Table(name = "promotions")
 public class Promotion {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int promotionId;
+	@Column(name = "PromotionID")
+	private Integer promotionId;
 
-	@Column(nullable = false, length = 100)
+	@Column(name = "Name", length = 100)
 	private String name;
 
-	@Column(nullable = false, length = 15)
+	@Column(name = "DiscountType", length = 15)
 	private String discountType;
 
-	@Column(nullable = false)
+	@Column(name = "DiscountValue")
 	private Double discountValue;
 
-	@Column(nullable = false)
+	@Column(name = "StartDate")
 	private LocalDate startDate;
 
-	@Column(nullable = false)
+	@Column(name = "EndDate")
 	private LocalDate endDate;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ShopID")
+	@ManyToOne
+	@JoinColumn(name = "ShopID", referencedColumnName = "ShopID")
 	private Shop shop;
 
-	@Column(nullable = false, columnDefinition = "DATETIME DEFAULT GETDATE()")
-	private LocalDateTime createdAt;
-
+	@Column(name = "CreatedAt")
+	private LocalDate createdAt;
 }

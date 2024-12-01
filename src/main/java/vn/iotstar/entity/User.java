@@ -1,6 +1,6 @@
 package vn.iotstar.entity;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,35 +15,36 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-
 @Entity
-@Table(name = "Users")
+@Table(name = "users")
 public class User {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int userId;
+	@Column(name = "UserID")
+	private Integer userId;
 
-	@Column(nullable = false, unique = true)
+	@Column(name = "Username", length = 50)
 	private String username;
 
-	@Column(nullable = false, length = 255)
+	@Column(name = "PasswordHash", length = 255)
 	private String passwordHash;
 
-	@Column(nullable = false, unique = true, length = 100)
+	@Column(name = "Email", length = 100)
 	private String email;
 
-	@Column(length = 100)
+	@Column(name = "FullName", length = 100)
 	private String fullName;
 
-	@Column(length = 15)
+	@Column(name = "PhoneNumber", length = 15)
 	private String phoneNumber;
 
-	@Column(columnDefinition = "NVARCHAR(MAX)")
+	@Column(name = "Address", columnDefinition = "TEXT") // Changed to TEXT
 	private String address;
 
-	@Column(nullable = false)
-	private String role = "Customer";
+	@Column(name = "Role", length = 50)
+	private String role;
 
-	@Column(nullable = false, columnDefinition = "DATETIME DEFAULT GETDATE()")
-	private LocalDateTime createdAt;
+	@Column(name = "CreatedAt")
+	private LocalDate createdAt;
 }

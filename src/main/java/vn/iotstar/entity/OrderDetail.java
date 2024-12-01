@@ -15,27 +15,25 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-
 @Entity
-@Table(name = "OrderDetails")
+@Table(name = "orderdetails")
 public class OrderDetail {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int orderDetailId;
+	@Column(name = "OrderDetailID")
+	private Integer orderDetailId;
 
 	@ManyToOne
-	@JoinColumn(name = "OrderId", nullable = false)
+	@JoinColumn(name = "OrderID", referencedColumnName = "OrderID")
 	private Order order;
 
 	@ManyToOne
-	@JoinColumn(name = "ProductId", nullable = false)
+	@JoinColumn(name = "ProductID", referencedColumnName = "ProductID")
 	private Product product;
 
-	@Column(nullable = false)
-	private int quantity;
+	@Column(name = "Quantity")
+	private Integer quantity;
 
-	@Column(nullable = false)
+	@Column(name = "Price")
 	private Double price;
-
 }

@@ -1,6 +1,6 @@
 package vn.iotstar.entity;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,21 +15,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-
 @Entity
-@Table(name = "Categories")
+@Table(name = "categories")
 public class Category {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int categoryId;
+	@Column(name = "CategoryID")
+	private Integer categoryId;
 
-	@Column(nullable = false, length = 100)
+	@Column(name = "Name", length = 100)
 	private String name;
 
-	@Column(columnDefinition = "NVARCHAR(MAX)")
+	@Column(name = "Description", columnDefinition = "TEXT") // Changed to TEXT
 	private String description;
 
-	@Column(nullable = false, columnDefinition = "DATETIME DEFAULT GETDATE()")
-	private LocalDateTime createdAt;
-
+	@Column(name = "CreatedAt")
+	private LocalDate createdAt;
 }
