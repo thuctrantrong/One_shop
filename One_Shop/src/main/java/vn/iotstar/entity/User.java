@@ -42,7 +42,7 @@ public class User {
 	private String address;
 
 	@Column(nullable = false)
-	private String role = "Customer";
+	private String role = "ROLE_USER";
 
 	@Column(nullable = false, columnDefinition = "DATETIME DEFAULT GETDATE()")
 	private LocalDateTime createdAt;

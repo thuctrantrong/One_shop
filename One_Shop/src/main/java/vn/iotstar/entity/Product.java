@@ -1,7 +1,6 @@
 package vn.iotstar.entity;
 
 import java.time.LocalDateTime;
-import java.util.Locale.Category;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -52,5 +51,8 @@ public class Product {
 
 	@Column(nullable = false, columnDefinition = "DATETIME DEFAULT GETDATE()")
 	private LocalDateTime createdAt;
+
+	@Column(nullable = false)
+	private int condition;
 
 }
