@@ -1,0 +1,44 @@
+/* Đảm bảo container có thể lướt ngang */
+.product-list {
+    display: flex;
+    overflow-x: auto;  /* Cho phép lướt ngang */
+    gap: 20px;         /* Khoảng cách giữa các sản phẩm */
+    padding: 10px 0;   /* Padding trên và dưới */
+    white-space: nowrap;  /* Không xuống dòng */
+    scroll-snap-type: x mandatory; /* Snap cuộn tại mỗi sản phẩm */
+}
+
+.product-item {
+    min-width: 250px; /* Chiều rộng tối thiểu cho mỗi sản phẩm */
+    background-color: #f9f9f9; /* Màu nền sản phẩm */
+    border: 1px solid #ddd; /* Viền nhẹ */
+    border-radius: 8px; /* Góc bo tròn */
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ cho sản phẩm */
+    text-align: center;
+    flex-shrink: 0;  /* Đảm bảo các sản phẩm không co lại */
+    scroll-snap-align: start; /* Ghim sản phẩm tại vị trí bắt đầu khi cuộn */
+}
+
+.product-item img {
+    width: 100%; /* Làm cho ảnh chiếm toàn bộ chiều rộng của item */
+    height: auto; /* Tự động điều chỉnh chiều cao ảnh */
+    max-height: 150px; /* Giới hạn chiều cao của ảnh */
+}
+
+.product-item h5 {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.product-item p {
+    font-size: 14px;
+    color: #777;
+}
+.card-header {
+    text-align: center; /* Canh giữa chữ */
+    font-size: 2rem; /* Phóng to chữ */
+    font-family: 'Roboto', sans-serif; /* Thay đổi font chữ */
+    font-weight: bold; /* Làm đậm chữ */
+}
+

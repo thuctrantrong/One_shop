@@ -38,4 +38,13 @@ public class HomeController {
     public String homeadminproduct() {
         return "/admin/product";
     }
+    @GetMapping("/userproduct")
+    public String homeuserproduct() {
+        return "/user/product";
+    }
+    @GetMapping("/user")
+    public String userhomepage() {
+        return "/user/userhomepage.html";
+    }
+    
 }
