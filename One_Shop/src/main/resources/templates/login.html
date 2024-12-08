@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Login Page</title>
+</head>
+
+<body>
+	<section style="min-height: 92.1vh; background-color: #f6f6ee">
+
+		<div class="container mt-5 p-5">
+			<div class="row">
+				<div class="col-md-6 p-5">
+					<img alt="" src="img/submenu.webp" width="70%" height = "80%" style="margin-top: 40px; margin-left: -30px">
+				</div>
+				<div class="col-md-6 mt-3 p-5" >
+					<div class="card-div p-3 mb-5 bg-body-tertiary rounded" >
+						<div class="card-header">
+							<p class="fs-3 text-center" style="font-family: sans-serif; color: #505C3C; font-weight: bold; margin-top: 15px; margin-bottom: 20px;">LOGIN</p>
+							<div th:if="${param.error}" class="alert alert-danger text-center" style="font-size: 1.8rem; font-weight: 700;">
+				
+								[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]
+							</div>
+
+							<div th:if="${param.logout}" class="alert alert-success text-center" style="font-size: 1.8rem; font-weight: 700;">
+								Logout Successfully</div>
+						</div>
+						<div class="card-body">
+							<form action="/login" method="post">
+								<div class="mb-3">
+									<label class="form-label" style="color: #505C3C; font-weight: 600; font-size: 20px">Email</label>
+									<input required class="form-control" name="username" type="email" style="color: #6b6b47;">
+								</div>
+								<div class="mb-3">
+									<label class="form-label" style="color: #505C3C; font-weight: 600; font-size: 20px">Password</label>
+									<input required class="form-control" name="password" type="password">
+								</div>
+								<button type="submit" class="btn text-white col-md-12 mt-3" style="background-color: #505C3C; font-weight: bold; font-size: 20px; margin-bottom: 10px;">Login</button>
+							</form>
+						</div>
+						<div class="card-footer text-center">
+							<a href="/forgot-password" class="text-decoration-none" style="color: #505C3C; margin-top: 30px">Forgot Password</a> <br>
+							<p style="color: #505C3C; margin-bottom: 0">Don't have an account ? </p>
+							<a href="/register"  style="color: #a3a375; text-decoration: underline; font-style: italic;">Create one</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</section>
+</body>
+
+</html>
