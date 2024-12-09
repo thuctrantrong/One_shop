@@ -7,7 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class OneShopApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(OneShopApplication.class, args);
+
+		 SpringApplication.run(OneShopApplication.class, args);
 	}
 
 }

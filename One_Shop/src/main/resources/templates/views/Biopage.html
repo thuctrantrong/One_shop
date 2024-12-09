@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Profile Settings</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../css/bio.css" rel="stylesheet" />
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body class="snippet-body">
+<div class="container rounded bg-white mt-5 mb-5">
+  <div class="row">
+    <!-- Sidebar Left -->
+    <div class="col-md-3 border-right">
+      <a href="/user" class="btn btn-primary mb-2">One_Shop</a>
+      <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+        <img class="rounded-circle mt-5" width="150px"
+             src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" alt="User Image">
+        <span class="font-weight-bold" th:text="${user.username}">Edogaru</span>
+        <span class="text-black-50" th:text="${user.email}">edogaru@mail.com.my</span>
+      </div>
+    </div>
+
+    <!-- Main Profile Section -->
+    <div class="col-md-5 border-right">
+      <form action="/role/edituser" method="POST">
+        <div class="p-3 py-5">
+          <!-- Notification messages -->
+          <div th:if="${message != null}" class="alert alert-[[${messageType}]]" role="alert">
+            <span th:text="${message}"></span>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="text-right">Profile Settings</h4>
+          </div>
+
+          <!-- Username -->
+          <div class="row mt-2">
+            <div class="col-md-12">
+              <label class="labels">Tên hiển thị</label>
+              <!-- Bind 'username' value dynamically from model -->
+              <input type="text" class="form-control" name="username" placeholder="user name" required
+                     th:value="${user.username}">
+            </div>
+          </div>
+
+          <!-- Full Name -->
+          <div class="row mt-2">
+            <div class="col-md-12">
+              <label class="labels">Tên người dùng</label>
+              <!-- Bind 'fullName' value dynamically from model -->
+              <input type="text" class="form-control" name="fullName" placeholder="full name" required
+                     th:value="${user.fullName}">
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div class="row mt-2">
+            <div class="col-md-12">
+              <label class="labels">Địa chỉ</label>
+              <!-- Bind 'address' value dynamically from model -->
+              <input type="text" class="form-control" name="address" placeholder="full name" required
+                     th:value="${user.address}">
+            </div>
+          </div>
+
+          <!-- Email (readonly) -->
+          <div class="row mt-3">
+            <div class="col-md-12">
+              <label class="labels">Địa chỉ Email</label>
+              <!-- Bind 'email' value dynamically from model -->
+              <input type="text" class="form-control" name="email" placeholder="enter address"
+                     th:value="${user.email}" readonly>
+            </div>
+          </div>
+
+          <!-- Save Profile and Logout Buttons -->
+          <div class="mt-5 text-center actions">
+            <button class="btn btn-primary profile-button" type="submit" name="action" value="saveProfile">Save Profile</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Change Password Section -->
+    <div class="col-md-4">
+      <form action="/role/changepass" method="POST">
+        <div class="p-3 py-5">
+          <div class="alert alert-warning" th:if="${messagep != null}" role="alert">
+            <span th:text="${messagep}"></span>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <span>Đổi mật khẩu</span>
+            <button type="submit" class="border px-3 p-1 add-experience" name="action" value="changePassword">
+              <i class="fa fa-plus"></i>&nbsp;Đổi mật khẩu
+            </button>
+          </div>
+
+          <!-- Old Password -->
+          <div class="col-md-12">
+            <label class="labels">Mật khẩu cũ</label>
+            <input type="password" class="form-control" placeholder="old password" name="password" value="" required>
+          </div>
+          <br>
+
+          <!-- New Password -->
+          <div class="col-md-12">
+            <label class="labels">Mật khẩu mới</label>
+            <input type="password" class="form-control" placeholder="new password" name="password1" value="" required>
+          </div>
+          <br>
+
+          <!-- Confirm New Password -->
+          <div class="col-md-12">
+            <label class="labels">Nhập lại mật khẩu mới</label>
+            <input type="password" class="form-control" name="password2" placeholder="new password" value="" required>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  function logout() {
+    window.location.href = '/logout';
+  }
+</script>
+</body>
+</html>

@@ -12,6 +12,6 @@ public interface ShopRepository extends JpaRepository<Shop, Integer> {
     @Query("SELECT s FROM Shop s WHERE s.condition = 1")
     List<Shop> findShopsWithCondition();
 
-    @Query("SELECT s FROM Shop s WHERE s.owner.userId = :userId AND s.condition = 1")
+    @Query("SELECT s FROM Shop s WHERE s.owner.userID = :userId AND s.condition = 1")
     List<Shop> findByOwnerId(@Param("userId") int userId);
 }
