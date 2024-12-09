@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
-    const productsPerPage = 10; // Số sản phẩm hiển thị mỗi trang
+    const productsPerPage = 20; // Số sản phẩm hiển thị mỗi trang
     let currentPage = 1; // Trang hiện tại
     let totalPages = 1; // Tổng số trang
     let selectedCategoryId = 'all'; // Danh mục hiện tại
@@ -21,7 +21,7 @@ window.addEventListener('DOMContentLoaded', () => {
             loader.style.display = 'block'; // Hiển thị loader
         }
 
-        fetch('http://localhost:9090/admin/api/product') // Thay đổi URL API nếu cần
+        fetch('http://localhost:9090/api/products') 
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
