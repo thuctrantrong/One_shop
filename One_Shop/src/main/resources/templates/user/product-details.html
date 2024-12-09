@@ -18,7 +18,6 @@
 	<link
 			href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Lora:wght@600;700&display=swap"
 			rel="stylesheet" />
-
 	<!-- Icon Font Stylesheet -->
 	<link
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
@@ -33,14 +32,13 @@
 		  rel="stylesheet" />
 
 	<!-- Customized Bootstrap Stylesheet -->
-	<link href="../../css/bootstrap.min.css" rel="stylesheet" />
+	<link href="css/bootstrap.min.css" rel="stylesheet" />
 
 	<!-- Template Stylesheet -->
-	<link href="../../css/style.css" rel="stylesheet" />
+	<link href="css/style.css" rel="stylesheet" />
 </head>
 
 <body>
-<!-- Spinner Start -->
 <div id="spinner"
 	 class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
 	<div class="spinner-border text-primary" role="status"></div>
@@ -52,8 +50,8 @@
 	 data-wow-delay="0.1s">
 	<div class="top-bar row gx-0 align-items-center d-none d-lg-flex">
 		<div class="col-lg-6 px-5 text-start">
-			<small><i class="fa fa-map-marker-alt me-2"></i>123
-				Lê Văn Việt, Quận 9, Tp.Hồ Chí Minh</small> <small class="ms-4"><i
+			<small><i class="fa fa-map-marker-alt me-2"></i>123 Lê Văn
+				Việt, Quận 9, Tp.Hồ Chí Minh</small> <small class="ms-4"><i
 				class="fa fa-envelope me-2"></i>info@example.com</small>
 		</div>
 		<div class="col-lg-6 px-5 text-end">
@@ -83,33 +81,64 @@
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<div class="navbar-nav top ms-auto p-lg-0">
 				<!-- <a href="index.html" class="nav-item nav-link active">Home</a>
-        <a href="about.html" class="nav-item nav-link">About Us</a>
+    <a href="about.html" class="nav-item nav-link">About Us</a>
 
-        <div class="nav-item dropdown">
-          <a
-            href="#"
-            class="nav-link dropdown-toggle"
-            data-bs-toggle="dropdown"
-            >Products</a
-          >
-            <div class="dropdown-menu">
-              <a href="blog.html" class="dropdown-item">Chăm sóc da</a>
-              <a href="feature.html" class="dropdown-item">Make Up</a>
-              <a href="testimonial.html" class="dropdown-item">Ưu đãi đặc biệt</a>
-          </div>
-        </div>
+    <div class="nav-item dropdown">
+      <a
+        href="#"
+        class="nav-link dropdown-toggle"
+        data-bs-toggle="dropdown"
+        >Products</a
+      >
+        <div class="dropdown-menu">
+          <a href="blog.html" class="dropdown-item">Chăm sóc da</a>
+          <a href="feature.html" class="dropdown-item">Make Up</a>
+          <a href="testimonial.html" class="dropdown-item">Ưu đãi đặc biệt</a>
+      </div>
+    </div>
 
-        <a href="contact.html" class="nav-item nav-link">Contact Us</a>
-         -->
+    <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+     -->
 				<div class="menu" id="navar">
 					<ul>
-						<li><a href="#">Home</a></li>
-						<li class="drop-menu"><a href="userproduct">Products<span>&#11167</span></a>
+						<li><a href="index.html">Home</a></li>
+						<li class="drop-menu"><a href="product.html">Products<span>&#11167</span></a>
 							<div class="sub-menu">
 								<ul>
-									<li><img class="logo-submenu" src="/img/submenu.webp"
+									<li><img class="logo-submenu" src="img/submenu.webp"
 											 alt="Image" /></li>
 								</ul>
+								<ul>
+									<li>
+										<h4 class="submenu-h4">Trang điểm</h4>
+									</li>
+									<li><a href="#">Kem nền</a></li>
+									<li><a href="#">Phấn phủ</a></li>
+									<li><a href="#">Phấn mắt</a></li>
+									<li><a href="#">Eyeliner</a></li>
+									<li><a href="#">Son môi</a></li>
+								</ul>
+								<ul>
+									<li>
+										<h4 class="submenu-h4">Dưỡng da</h4>
+									</li>
+									<li><a href="#">Mặt nạ</a></li>
+									<li><a href="#">Serum</a></li>
+									<li><a href="#">Phấn mắt</a></li>
+									<li><a href="#">Eyeliner</a></li>
+									<li><a href="#">Tẩy trang</a></li>
+								</ul>
+								<ul>
+									<li>
+										<h4 class="submenu-h4">Sản phẩm khác</h4>
+									</li>
+									<li><a href="#">Kem nền</a></li>
+									<li><a href="#">Phấn phủ</a></li>
+									<li><a href="#">Phấn mắt</a></li>
+									<li><a href="#">Eyeliner</a></li>
+									<li><a href="#">Son môi</a></li>
+								</ul>
+
 							</div></li>
 						<li class="drop-two"><a href="#">About us <span>&#11167</span></a>
 							<div class="menu-two">
@@ -131,18 +160,10 @@
 					</button>
 				</form>
 
-				<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-						<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="/biopage">Thông tin</a></li>
-							<li><hr class="dropdown-divider" /></li>
-							<li><a class="dropdown-item" href="#!">Logout</a></li>
-						</ul>
-					</li>
-				</ul><a class="btn-sm-square bg-white rounded-circle ms-3"
-					href="shopping-cart.html"> <small
-					class="fa fa-shopping-bag text-body"></small>
+				</a> <a class="btn-sm-square bg-white rounded-circle ms-3"
+						href="admin.html"> <small class="fa fa-user text-body"></small>
+			</a> <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
+				<small class="fa fa-shopping-bag text-body"></small>
 			</a>
 			</div>
 		</div>
@@ -164,10 +185,10 @@
 						<div class="row justify-content-start">
 							<div class="col-lg-7">
 								<!-- <a
-                href=""
-                class="btn btn-secondary rounded-pill py-sm-3 px-sm-5 ms-3"
-                >XEM THÊM</a
-              > -->
+            href=""
+            class="btn btn-secondary rounded-pill py-sm-3 px-sm-5 ms-3"
+            >XEM THÊM</a
+          > -->
 							</div>
 						</div>
 					</div>
@@ -180,10 +201,10 @@
 						<div class="row justify-content-start">
 							<div class="col-lg-7">
 								<!-- <a
-                  href=""
-                  class="btn btn-blu rounded-pill py-sm-3 px-sm-5"
-                  >XEM THÊM</a
-                > -->
+              href=""
+              class="btn btn-blu rounded-pill py-sm-3 px-sm-5"
+              >XEM THÊM</a
+            > -->
 							</div>
 						</div>
 					</div>
@@ -196,10 +217,10 @@
 						<div class="row justify-content-start">
 							<div class="col-lg-7">
 								<!-- <a
-                  href=""
-                  class="btn btn-blu rounded-pill py-sm-3 px-sm-5"
-                  >XEM THÊM</a
-                > -->
+              href=""
+              class="btn btn-blu rounded-pill py-sm-3 px-sm-5"
+              >XEM THÊM</a
+            > -->
 							</div>
 						</div>
 					</div>
@@ -212,10 +233,10 @@
 						<div class="row justify-content-start">
 							<div class="col-lg-7">
 								<!-- <a
-                  href=""
-                  class="btn btn-blu rounded-pill py-sm-3 px-sm-5"
-                  >XEM THÊM</a
-                > -->
+              href=""
+              class="btn btn-blu rounded-pill py-sm-3 px-sm-5"
+              >XEM THÊM</a
+            > -->
 							</div>
 						</div>
 					</div>
@@ -235,122 +256,164 @@
 	</button>
 </div>
 </div>
-<!-- Carousel End -->
-
-
-<!-- Feature Start -->
-<div class="container-fluid bg-light bg-icon my-5 py-6">
-	<div class="container">
-		<div class="section-header text-center mx-auto mb-5 wow fadeInUp"
-			 data-wow-delay="0.1s" style="max-width: 500px">
-			<h1 class="display-5 mb-3">Lợi ích tuyệt vời dành cho làn da</h1>
-			<p>O’Muse mỹ phẩm thuần chay không chỉ đem tới những duỡng chất
-				thanh khiết, lành tính cho sức khoẻ và làn da của Nàng mà còn góp
-				phần bảo vệ môi trường và an toàn với cộng đồng.</p>
+<main role="main">
+	<!-- PRODUCT START -->
+	<div class="container mt-4">
+		<div id="thongbao" class="alert alert-danger d-none face"
+			 role="alert">
+			<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+				<span aria-hidden="true">×</span>
+			</button>
 		</div>
-		<div class="row g-4">
-			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-				<div class="bg-white text-center h-100 p-4 p-xl-5">
-					<img class="img-fluid mb-4" src="img/icon4-removebg-preview.png"
-						 alt="" />
-					<h4 class="mb-3">Natural Process</h4>
-					<p class="mb-4">Tăng cường khả năng tự bảo vệ của làn da, tái
-						tạo làn da từ tầng sâu</p>
-					>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-				<div class="bg-white text-center h-100 p-4 p-xl-5">
-					<img class="img-fluid mb-4" src="img/icon2-removebg-preview.png"
-						 alt="" />
-					<h4 class="mb-3">Organic Products</h4>
-					<p class="mb-4">Nuôi dưỡng làn da khỏe mạnh</p>
-					>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-				<div class="bg-white text-center h-100 p-4 p-xl-5">
-					<img class="img-fluid mb-4" src="img/icon3-removebg-preview.png"
-						 alt="" />
-					<h4 class="mb-3">Biologically Safe</h4>
-					<p class="mb-4">An toàn và lành tính, không gây kích ứng trên
-						da</p>
-					>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- Feature End -->
 
-<!-- Product Start -->
-<!-- Product End -->
+		<!-- Card cho chi tiết sản phẩm -->
+		<div class="card">
+			<div class="container-fluid">
+				<form name="frmsanphamchitiet" id="frmsanphamchitiet" method="post"
+					  action="/php/twig/frontend/giohang/themvaogiohang">
+					<input type="hidden" name="sp_ma" id="sp_ma"> <input
+						type="hidden" name="sp_ten" id="sp_ten"> <input
+						type="hidden" name="sp_gia" id="sp_gia"> <input
+						type="hidden" name="hinhdaidien" id="hinhdaidien"> <input
+						type="hidden" name="sp_soluong" id="sp_soluong">
+					<!-- Thêm trường số lượng -->
 
-<!-- Firm Visit Start -->
-<div class="container-fluid bg-icon ">
-	<div class="container">
-		<div class="row g-5 align-items-center">
-			<img class="nav-img" src="img/nav.webp" alt="" />
-		</div>
-	</div>
-</div>
+					<div class="wrapper row">
+						<!-- Phần preview hình ảnh sản phẩm -->
+						<div class="preview col-md-6">
+							<div class="preview-pic tab-content">
+							</div>
+							<ul class="preview-thumbnail nav nav-tabs">
+								<li class="active"><a data-target="#pic-1"
+													  data-toggle="tab"> <img src="" id="thumbnail-image"
+																			  alt="Ảnh sản phẩm" class="img-thumbnail">
+								</a></li>
+							</ul>
+						</div>
 
-<!-- Firm Visit End -->
+						<!-- Phần thông tin chi tiết sản phẩm -->
+						<div class="details col-md-6">
+							<h3 id="product-name" class="product-title">Tên sản phẩm</h3>
+							<div class="rating">
+								<div class="stars">
+									<span class="fa fa-star checked"></span> <span
+										class="fa fa-star checked"></span> <span
+										class="fa fa-star checked"></span> <span class="fa fa-star"></span>
+									<span class="fa fa-star"></span>
+								</div>
+								<span class="review-no" id="product-reviews">0 reviews</span>
+							</div>
+							<small class="text-muted">Giá cũ: <s><span
+									id="old-price">0 ₫</span></s></small>
+							<h4 class="price">
+								Giá hiện tại: <span id="current-price">0 ₫</span>
+							</h4>
+							<p class="vote">
+								<strong>100%</strong> hàng <strong>Chất lượng</strong>, đảm bảo
+								<strong>Uy tín</strong>!
+							</p>
 
-<!-- Testimonial Start -->
+							<!-- Thêm trường nhập liệu cho số lượng -->
+							<div class="quantity">
+								<label for="quantity">Số lượng:</label> <input type="number"
+																			   id="quantity" name="quantity" value="1" min="1"
+																			   class="form-control w-25" />
+							</div>
 
-<!-- Testimonial End -->
+							<!-- Hiển thị số lượng còn lại -->
+							<div id="stock-available" class="text-muted mt-2">
+								<strong>Số lượng còn lại:</strong> <span id="stock-count">0</span>
+							</div>
 
-<!-- Blog Start -->
-<div class="container-xxl py-5">
-	<div class="container">
-		<div class="section-header text-center mx-auto mb-5 wow fadeInUp"
-			 data-wow-delay="0.1s" style="max-width: 500px">
-			<h1 class="display-5 mb-3">Thương Gửi Nàng Thơ Của Cosmetic</h1>
-			<p>"Thần thái không đến từ chiếc váy hay màu son, nó toát ra khi
-				nàng quyết định quan tâm đến vẻ ngoài của mình." (Jennifer L.
-				Scott)</p>
-		</div>
-		<div class="row g-4">
-			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-				<img class="img-fluid" src="img/f6.webp" alt="" />
-				<div class="bg-light p-4">
-					<a class="d-block h5 lh-base mb-4" href="">Từ
-						Điển Sống Khỏe - Wellness</a>
-					<div class="text-muted border-top pt-4">
-						<small class="me-3"><i
-								class="fa fa-user text-red me-2"></i>Admin</small> <small class="me-3"><i
-							class="fa fa-calendar text-red me-2"></i>01 July, 2022</small>
+							<!-- Các nút hành động -->
+							<div class="action">
+								<a
+										class="add-to-cart btn btn-outline-primary border-2 py-2 px-4 mt-2"
+										id="btnThemVaoGioHang"> Thêm vào giỏ hàng </a> <a
+									class="add-to-cart btn btn-outline-primary border-2 py-2 px-4 mt-2"
+									href="/userproduct"> Back </a> <a
+									class="like btn border-2 py-2 px-4 mt-2 rounded-pill" href="#">
+								<span class="fa fa-heart"></span>
+							</a>
+							</div>
+						</div>
 					</div>
-				</div>
+				</form>
 			</div>
-			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-				<img class="img-fluid" src="img/f2.webp" alt="" />
-				<div class="bg-light p-4">
-					<a class="d-block h5 lh-base mb-4" href="">Dưỡng
-						Ẩm Đúng Cách Cho Da</a>
-					<div class="text-muted border-top pt-4">
-						<small class="me-3"><i
-								class="fa fa-user text-red me-2"></i>Admin</small> <small class="me-3"><i
-							class="fa fa-calendar text-red me-2"></i>06 June, 2022</small>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-				<img class="img-fluid" src="img/f3.webp" alt="" />
-				<div class="bg-light p-4">
-					<a class="d-block h5 lh-base mb-4" href="">Mẹo
-						Làm Đẹp Cho Làn Da Của Bạn</a>
-					<div class="text-muted border-top pt-4">
-						<small class="me-3"><i
-								class="fa fa-user text-red me-2"></i>Admin</small> <small class="me-3"><i
-							class="fa fa-calendar text-red me-2"></i>16 September, 2022</small>
+		</div>
+		<!-- Card cho thông tin chi tiết sản phẩm thêm -->
+		<div class="card">
+			<div class="container-fluid">
+				<h3>Thông tin chi tiết về sản phẩm</h3>
+				<div class="row">
+					<div class="col-md-12">
+						<p id="product-description">Mô tả sản phẩm sẽ hiển thị ở
+							đây...</p>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
+
+	<script>
+		window.addEventListener('DOMContentLoaded', () => {
+			const productDetails = document.getElementById('product-details');
+			const productId = new URLSearchParams(window.location.search).get('id');
+
+			if (productId) {
+				// Lấy danh sách sản phẩm từ localStorage
+				const products = JSON.parse(localStorage.getItem('products')) || [];
+
+				// Tìm sản phẩm theo ID
+				const selectedProduct = products.find(p => p.productId.toString() === productId);
+
+				if (selectedProduct) {
+					// Cập nhật thông tin sản phẩm vào giao diện
+					document.getElementById('sp_ma').value = selectedProduct.productId;
+					document.getElementById('sp_ten').value = selectedProduct.name;
+					document.getElementById('sp_gia').value = selectedProduct.price;
+					document.getElementById('hinhdaidien').value = selectedProduct.imageUrl;
+
+					// Cập nhật ảnh sản phẩm
+					document.getElementById('thumbnail-image').src = selectedProduct.imageUrl || '/img/default-image.jpg';
+
+					// Cập nhật tên sản phẩm
+					document.getElementById('product-name').innerText = selectedProduct.name || 'Tên sản phẩm không có sẵn';
+
+					// Cập nhật giá cũ và giá mới
+					document.getElementById('current-price').innerText = selectedProduct.price || 'Liên hệ';
+					document.getElementById('old-price').innerText = selectedProduct.oldPrice || 'Liên hệ';
+
+					// Cập nhật mô tả
+					document.getElementById('product-description').innerText = selectedProduct.description || 'Không có mô tả cho sản phẩm này.';
+
+					// Cập nhật số lượng đánh giá
+					document.getElementById('product-reviews').innerText = selectedProduct.reviews || 'Chưa có đánh giá';
+
+					// Cập nhật số lượng còn lại
+					document.getElementById('stock-count').innerText = selectedProduct.stock || '0';
+
+					// Cập nhật số lượng vào form
+					document.getElementById('sp_soluong').value = document.getElementById('quantity').value;
+				} else {
+					productDetails.innerHTML = '<p style="color: red; font-size: 1.2rem; font-weight: bold;">Không tìm thấy thông tin sản phẩm!</p>';
+				}
+			} else {
+				productDetails.innerHTML = '<p style="color: red; font-size: 1.2rem; font-weight: bold;">Không có ID sản phẩm trong URL!</p>';
+			}
+
+			// Cập nhật số lượng khi thay đổi
+			document.getElementById('quantity').addEventListener('change', (e) => {
+				document.getElementById('sp_soluong').value = e.target.value;
+			});
+		});
+	</script>
+
+	<!-- PRODUCT END -->
+</main>
+
+
 <!-- Blog End -->
 
 <!-- Footer Start -->
@@ -368,13 +431,13 @@
 					comfortable.</p>
 				<div class="d-flex pt-2">
 					<a class="btn btn-square btn-outline-light rounded-circle me-1"
-					   href=""><i class="fab fa-twitter"></i></a>
-					<a class="btn btn-square btn-outline-light rounded-circle me-1"
-					   href=""><i class="fab fa-facebook-f"></i></a>
-					<a class="btn btn-square btn-outline-light rounded-circle me-1"
-					   href=""><i class="fab fa-youtube"></i></a>
-					<a class="btn btn-square btn-outline-light rounded-circle me-0"
-					   href=""><i class="fab fa-linkedin-in"></i></a>
+					   href=""><i class="fab fa-twitter"></i></a> <a
+						class="btn btn-square btn-outline-light rounded-circle me-1"
+						href=""><i class="fab fa-facebook-f"></i></a> <a
+						class="btn btn-square btn-outline-light rounded-circle me-1"
+						href=""><i class="fab fa-youtube"></i></a> <a
+						class="btn btn-square btn-outline-light rounded-circle me-0"
+						href=""><i class="fab fa-linkedin-in"></i></a>
 				</div>
 			</div>
 			<div class="col-lg-3 col-md-6">
@@ -438,7 +501,8 @@
 <script src="lib/waypoints/waypoints.min.js"></script>
 <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-<script src="../../js/main.js"></script>
+<!-- Template Javascript -->
+<script src="js/main.js"></script>
 </body>
 
 </html>
