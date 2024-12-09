@@ -46,5 +46,8 @@ public class HomeController {
     public String userhomepage() {
         return "/user/userhomepage.html";
     }
-    
+    @GetMapping("/product-details")
+    public String productdetails() {
+        return "/user/product-details.html";
+    }
 }

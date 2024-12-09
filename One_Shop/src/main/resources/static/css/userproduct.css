@@ -42,3 +42,64 @@
     font-weight: bold; /* Làm đậm chữ */
 }
 
+/* Căn giữa toàn bộ trang */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f9;
+}
+
+/* Định dạng container */
+.container {
+    max-width: 800px;
+    width: 100%;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Định dạng tiêu đề */
+h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 10px;
+    white-space: nowrap; /* Đảm bảo tiêu đề không bị xuống dòng */
+}
+
+/* Dấu phân cách dưới tiêu đề */
+hr {
+    margin: 20px 0;
+    border: 1px solid #007bff; /* Đường phân cách màu xanh */
+}
+
+/* Định dạng phần chi tiết sản phẩm */
+#product-details {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+/* Định dạng link "Quay lại" */
+a {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+a:hover {
+    background-color: #0056b3;
+}
+
+
