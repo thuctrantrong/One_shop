@@ -9,7 +9,9 @@
 <meta content="" name="description">
 
 <!-- Favicon -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap"
+	rel="stylesheet">
 <link href="/img/favicon.ico" rel="icon">
 <link rel="stylesheet" href="/css/userproduct.css">
 
@@ -54,7 +56,7 @@
 		<div class="top-bar row gx-0 align-items-center d-none d-lg-flex">
 			<div class="col-lg-6 px-5 text-start">
 				<small><i class="fa fa-map-marker-alt me-2"></i>0 Võ Văn
-					Ngân, Phường Linh Chiểu, Thành Phố Thủ Đức, Hồ Chí Minh.</small> <small
+					Ngân, Linh Chiểu,Thủ Đức, Hồ Chí Minh.</small> <small
 					class="ms-4"><i class="fa fa-envelope me-2"></i>OneShopUTE@gmail.com</small>
 			</div>
 			<div class="col-lg-6 px-5 text-end">
@@ -214,18 +216,39 @@
 
 
 	<!-- Product Start -->
-<div class="container">
-    <h1 style="text-align: center; font-family: 'Poppins', sans-serif; font-size: 3.5rem; font-weight: 600; text-transform: uppercase; 
-               letter-spacing: 4px; margin-bottom: 60px; color: #2c3e50; text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);">
-        <span style="color: #e74c3c; font-size: 3.7rem;">Danh Sách</span> Sản Phẩm
-    </h1>
-    <div id="product-list" class="product-grid">
-        <!-- Các sản phẩm sẽ được thêm vào đây -->
+	 <div class="container">
+        <h1
+            style="text-align: center; font-family: 'Poppins', sans-serif; font-size: 3.5rem; font-weight: 600; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 60px; color: #2c3e50; text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);">
+            <span style="color: #e74c3c; font-size: 3.7rem;">Danh Sách</span> Sản Phẩm
+        </h1>
+
+        <!-- Phần Bộ Lọc Danh Mục -->
+        <div id="category-filter" class="category-filter" style="text-align: center; margin-bottom: 30px;">
+            <div id="category-buttons" class="category-buttons">
+                <button class="category-btn active" data-id="all">Tất Cả</button>
+                <!-- Các nút danh mục sẽ được thêm động ở đây -->
+            </div>
+        </div>
+
+        <!-- Danh Sách Sản Phẩm -->
+        <div id="product-list" class="product-grid">
+            <!-- Các sản phẩm sẽ được thêm vào đây -->
+        </div>
+
+        <!-- Phân Trang -->
+        <div id="pagination" class="pagination">
+            <!-- Các nút phân trang sẽ được thêm vào đây -->
+        </div>
+
+        <!-- Loader (tùy chọn) -->
+        <div id="loader" class="loader" style="display: none;"></div>
+
+        <!-- Thông Báo Lỗi (tùy chọn) -->
+        <div id="error-message" class="error-message" style="display: none;">
+            <!-- Thông báo lỗi sẽ được hiển thị ở đây -->
+        </div>
     </div>
-    <div id="pagination" class="pagination">
-        <!-- Các nút phân trang sẽ được thêm vào đây -->
-    </div>
-</div>
+	<!-- PRODUCT END -->
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark footer mt-5 pt-5 wow fadeIn"
 		data-wow-delay="0.1s">
