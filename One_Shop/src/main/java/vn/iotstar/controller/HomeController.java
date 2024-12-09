@@ -67,7 +67,6 @@ public class HomeController {
         String userEmail = (String) session.getAttribute("useremail");
         User user = userService.findUserByEmail(userEmail);
         model.addAttribute("user", user);
-
         return "/views/Biopage";
     }
     @PostMapping("/role/edituser")

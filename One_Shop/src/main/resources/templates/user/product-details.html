@@ -159,17 +159,17 @@
 							<small class="fa fa-search text-body"></small>
 						</button>
 					</form>
+
 					<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-							<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="/biopage">Thông tin</a></li>
-								<li><hr class="dropdown-divider" /></li>
-								<li><a class="dropdown-item" href="#!">Logout</a></li>
-							</ul>
-						</li>
-					</ul>
-					<a class="btn-sm-square bg-white rounded-circle ms-3" href="">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+						<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="/biopage">Thông tin</a></li>
+							<li><hr class="dropdown-divider" /></li>
+							<li><a class="dropdown-item" href="#!">Logout</a></li>
+						</ul>
+					</li>
+				</ul> <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
 						<small class="fa fa-shopping-bag text-body"></small>
 					</a>
 				</div>
@@ -191,7 +191,11 @@
 						<div class="container">
 							<div class="row justify-content-start">
 								<div class="col-lg-7">
-
+									<!-- <a
+                href=""
+                class="btn btn-secondary rounded-pill py-sm-3 px-sm-5 ms-3"
+                >XEM THÊM</a
+              > -->
 								</div>
 							</div>
 						</div>
@@ -260,7 +264,7 @@
 	</div>
 	</div>
 	<main role="main">
-		<!-- Block content - Đục lỗ trên giao diện bố cục chung, đặt tên là `content` -->
+		<!-- PRODUCT START -->
 		<div class="container mt-4">
 			<div id="thongbao" class="alert alert-danger d-none face"
 				role="alert">
@@ -286,11 +290,6 @@
 							<!-- Phần preview hình ảnh sản phẩm -->
 							<div class="preview col-md-6">
 								<div class="preview-pic tab-content">
-									<div class="tab-pane active" id="pic-1">
-										<!-- Hình ảnh sản phẩm sẽ được cập nhật ở đây từ script -->
-										<img src="" id="product-image" alt="Hình sản phẩm"
-											class="img-fluid">
-									</div>
 								</div>
 								<ul class="preview-thumbnail nav nav-tabs">
 									<li class="active"><a data-target="#pic-1"
@@ -350,7 +349,6 @@
 					</form>
 				</div>
 			</div>
-
 			<!-- Card cho thông tin chi tiết sản phẩm thêm -->
 			<div class="card">
 				<div class="container-fluid">
@@ -385,7 +383,6 @@ window.addEventListener('DOMContentLoaded', () => {
             document.getElementById('hinhdaidien').value = selectedProduct.imageUrl;
 
             // Cập nhật ảnh sản phẩm
-            document.getElementById('product-image').src = selectedProduct.imageUrl || '/img/default-image.jpg';
             document.getElementById('thumbnail-image').src = selectedProduct.imageUrl || '/img/default-image.jpg';
 
             // Cập nhật tên sản phẩm
@@ -420,7 +417,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-		<!-- End block content -->
+		<!-- PRODUCT END -->
 	</main>
 
 
