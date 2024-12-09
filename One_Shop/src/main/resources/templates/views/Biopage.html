@@ -60,8 +60,17 @@
             <div class="col-md-12">
               <label class="labels">Địa chỉ</label>
               <!-- Bind 'address' value dynamically from model -->
-              <input type="text" class="form-control" name="address" placeholder="full name" required
+              <input type="text" class="form-control" name="address" placeholder="Địa chỉ" required
                      th:value="${user.address}">
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-12">
+              <label class="labels">Số điện thoại</label>
+              <!-- Bind 'address' value dynamically from model -->
+              <input type="text" class="form-control" name="phoneNumber" placeholder="phone number" required
+                     th:value="${user.phoneNumber}">
             </div>
           </div>
 

@@ -76,7 +76,7 @@ public class HomeController {
         existingUser.setUsername(user.getUsername());
         existingUser.setFullName(user.getFullName());
         existingUser.setAddress(user.getAddress());
-
+        existingUser.setPhoneNumber(user.getPhoneNumber());
         userService.updateUser(existingUser);
         model.addAttribute("message", "Profile updated successfully.");
         model.addAttribute("user", existingUser);
