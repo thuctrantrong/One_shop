@@ -32,4 +32,6 @@ public class Category {
 	@Column(nullable = false, columnDefinition = "DATETIME DEFAULT GETDATE()")
 	private LocalDateTime createdAt;
 
+	@Column(nullable = false)
+	private int condition;
 }

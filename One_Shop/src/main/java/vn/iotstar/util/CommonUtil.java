@@ -1,18 +1,17 @@
 package vn.iotstar.util;
 
-import java.io.UnsupportedEncodingException;
-import java.security.Principal;
-
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
-
-import jakarta.mail.MessagingException;
-import jakarta.mail.internet.MimeMessage;
-import jakarta.servlet.http.HttpServletRequest;
 import vn.iotstar.entity.User;
 import vn.iotstar.service.UserService;
+
+import java.io.UnsupportedEncodingException;
+import java.security.Principal;
 
 @Component
 public class CommonUtil {

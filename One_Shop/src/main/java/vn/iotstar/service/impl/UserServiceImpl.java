@@ -128,4 +128,18 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	@Override
+	public User changepassUser(String email, String password) {
+		User user = userRepository.findUserByEmail(email);
+		if (user == null) {
+			throw new RuntimeException("User not found!");
+		}
+		String encryptedNewPassword = passwordEncoder.encode(password);
+
+		user.setPasswordHash(encryptedNewPassword);
+		userRepository.save(user);
+
+		return user;
+	}
+
 }

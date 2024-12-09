@@ -1,152 +1,215 @@
 package vn.iotstar.controller;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.UUID;
-
+import jakarta.mail.MessagingException;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import vn.iotstar.entity.Promotion;
 import vn.iotstar.entity.User;
+import vn.iotstar.service.PromotionService;
 import vn.iotstar.service.UserService;
+import vn.iotstar.service.impl.UserServiceImpl;
 import vn.iotstar.util.CommonUtil;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class HomeController {
-	@Autowired
-	private UserService userService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    private CommonUtil commonUtil;
+    @GetMapping("/")
+    public String home() {
+        return "/homepage";
+    }
 
-	@Autowired
-	private BCryptPasswordEncoder passwordEncoder;
+    @GetMapping("/admin")
+    public String homeadmin() {
+        return "/admin/adminuser";
+    }
+    @GetMapping("/admin/shop")
+    public String homeadminshop() {
+        return "/admin/shop";
+    }
+    @GetMapping("/admin/product")
+    public String homeadminproduct() {
+        return "/admin/product";
+    }
+    @GetMapping("/admin/category")
+    public String homeadmincategory() {
+        return "/admin/category";
+    }
+    @GetMapping("/userproduct")
+    public String homeuserproduct() {
+        return "/user/product";
+    }
+    @GetMapping("/product-details")
+    public String productdetails() {
+        return "/user/product-details.html";
+    }
+    @GetMapping("/biopage")
+    public String bio(HttpSession session, Model model) {
+        String userEmail = (String) session.getAttribute("useremail");
+        User user = userService.findUserByEmail(userEmail);
+        model.addAttribute("user", user);
 
-	@Autowired
-	private CommonUtil commonUtil;
+        return "/views/Biopage";
+    }
+    @PostMapping("/role/edituser")
+    public String editUser(@ModelAttribute User user, HttpSession session, Model model) {
+        String userEmail = (String) session.getAttribute("useremail");
+        User existingUser = userService.findUserByEmail(userEmail);
+        existingUser.setUsername(user.getUsername());
+        existingUser.setFullName(user.getFullName());
+        existingUser.setAddress(user.getAddress());
 
-	@GetMapping("/")
-	public String home() {
-		return "/homepage";
-	}
+        userService.updateUser(existingUser);
+        model.addAttribute("message", "Profile updated successfully.");
+        model.addAttribute("user", existingUser);
 
-	@GetMapping("/admin")
-	public String homeadmin() {
-		return "/admin/adminuser";
-	}
+        return "/views/Biopage";
+    }
+    @PostMapping("/role/changepass")
+    public String changePassUser(@RequestParam("password") String oldPassword,
+                                 @RequestParam("password1") String newPassword,
+                                 @RequestParam("password2") String confirmPassword,
+                                 HttpSession session, Model model) {
+        String userEmail = (String) session.getAttribute("useremail");
+        User existingUser = userService.findUserByEmail(userEmail);
+        if (!passwordEncoder.matches(oldPassword, existingUser.getPasswordHash())) {
+            User user = userService.findUserByEmail(userEmail);
+            model.addAttribute("user", user);
+            model.addAttribute("messagep", "Mật khẩu cũ không đúng.");
+            return "views/Biopage";
+        }
+        if (!newPassword.equals(confirmPassword)) {
+            User user = userService.findUserByEmail(userEmail);
+            model.addAttribute("user", user);
+            model.addAttribute("messagep", "Mật khẩu mới và xác nhận mật khẩu không khớp.");
+            return "views/Biopage";
+        }
+        userService.changepassUser(userEmail,newPassword);
+        model.addAttribute("messagep", "change pass successfully.");
+        model.addAttribute("user", existingUser);
+        return "views/Biopage";
+    }
+    @GetMapping("/admin/promotion")
+    public String showPromotion() {
+        return "/admin/adminpromotion";
+    }
+    @GetMapping("/user")
+    public String homeuser() {
+        return "user/home";
+    }
 
-	@GetMapping("/shop")
-	public String homeadminshop() {
-		return "/admin/shop";
-	}
+    @GetMapping("/signin")
+    public String login() {
+        return "login";
+    }
 
-	@GetMapping("/product")
-	public String homeadminproduct() {
-		return "/admin/product";
-	}
+    @GetMapping("/register")
+    public String register() {
+        return "register";
+    }
 
-	@GetMapping("/signin")
-	public String login() {
-		return "login";
-	}
+    @PostMapping("/saveUser")
+    public String saveUser(@ModelAttribute User user, HttpSession session, @RequestParam String confirmpassword)
+            throws IOException {
 
-	@GetMapping("/register")
-	public String register() {
-		return "register";
-	}
+        Boolean existsEmail = userService.existsEmail(user.getEmail());
+        if (existsEmail) {
+            session.setAttribute("errorMsg", "Email already exists!");
+            return "redirect:/register"; //
+        }
 
-	@PostMapping("/saveUser")
-	public String saveUser(@ModelAttribute User user, HttpSession session, @RequestParam String confirmpassword)
-			throws IOException {
+        if (!user.getPasswordHash().equals(confirmpassword)) {
+            session.setAttribute("errorMsg", "Passwords do not match!");
+            return "redirect:/register";
+        }
 
-		Boolean existsEmail = userService.existsEmail(user.getEmail());
-		if (existsEmail) {
-			session.setAttribute("errorMsg", "Email already exists!");
-			return "redirect:/register"; //
-		}
+        User savedUser = userService.saveUser(user);
 
-		if (!user.getPasswordHash().equals(confirmpassword)) {
-			session.setAttribute("errorMsg", "Passwords do not match!");
-			return "redirect:/register";
-		}
+        session.setAttribute("succMsg", "Registration successful!");
+        return "redirect:/register";
+    }
+    // Forgot Password Code
+    @GetMapping("/forgot-password")
+    public String showForgotPassword() {
+        return "forgot_password.html";
+    }
 
-		User savedUser = userService.saveUser(user);
+    @PostMapping("/forgot-password")
+    public String processForgotPassword(@RequestParam String email, HttpSession session, HttpServletRequest request)
+            throws UnsupportedEncodingException, MessagingException {
 
-		session.setAttribute("succMsg", "Registration successful!");
-		return "redirect:/register";
-	}
+        User userByEmail = userService.getUserByEmail(email);
 
-	// Forgot Password Code
-	@GetMapping("/forgot-password")
-	public String showForgotPassword() {
-		return "forgot_password.html";
-	}
+        if (ObjectUtils.isEmpty(userByEmail)) {
+            session.setAttribute("errorMsg", "Invalid email");
+        } else {
 
-	@PostMapping("/forgot-password")
-	public String processForgotPassword(@RequestParam String email, HttpSession session, HttpServletRequest request)
-			throws UnsupportedEncodingException, MessagingException {
+            String resetToken = UUID.randomUUID().toString();
+            userService.updateUserResetToken(email, resetToken);
 
-		User userByEmail = userService.getUserByEmail(email);
+            // Generate URL :
+            // http://localhost:8080/reset-password?token=sfgdbgfswegfbdgfewgvsrg
 
-		if (ObjectUtils.isEmpty(userByEmail)) {
-			session.setAttribute("errorMsg", "Invalid email");
-		} else {
+            String url = CommonUtil.generateUrl(request) + "/reset-password?token=" + resetToken;
 
-			String resetToken = UUID.randomUUID().toString();
-			userService.updateUserResetToken(email, resetToken);
+            Boolean sendMail = commonUtil.sendMail(url, email);
 
-			// Generate URL :
-			// http://localhost:8080/reset-password?token=sfgdbgfswegfbdgfewgvsrg
+            if (sendMail) {
+                session.setAttribute("succMsg", "Please check your email..Password Reset link sent");
+            } else {
+                session.setAttribute("errorMsg", "Somethong wrong on server ! Email not send");
+            }
+        }
 
-			String url = CommonUtil.generateUrl(request) + "/reset-password?token=" + resetToken;
+        return "redirect:/forgot-password";
+    }
 
-			Boolean sendMail = commonUtil.sendMail(url, email);
+    @GetMapping("/reset-password")
+    public String showResetPassword(@RequestParam String token, HttpSession session, Model m) {
+        User userByToken = userService.getUserByToken(token);
+        if (userByToken == null) {
+            m.addAttribute("msg", "Your link is invalid or expired!!!");
+            return "message";
+        }
+        m.addAttribute("token", token);
+        return "reset_password";
+    }
 
-			if (sendMail) {
-				session.setAttribute("succMsg", "Please check your email..Password Reset link sent");
-			} else {
-				session.setAttribute("errorMsg", "Somethong wrong on server ! Email not send");
-			}
-		}
+    @PostMapping("/reset-password")
+    public String resetPassword(@RequestParam String token, @RequestParam String password, HttpSession session,
+                                Model m) {
+        User userByToken = userService.getUserByToken(token);
 
-		return "redirect:/forgot-password";
-	}
+        if (userByToken == null) {
+            m.addAttribute("errorMsg", "Your link is invalid or expired!!!");
+            return "message";
+        } else {
+            userByToken.setPasswordHash(passwordEncoder.encode(password));
+            userByToken.setResetToken(null);
+            userService.updateUser(userByToken);
+            /* session.setAttribute("succMsg", "Password change successfully!"); */
+            m.addAttribute("msg", "Password change successfully!");
+            return "message";
+        }
 
-	@GetMapping("/reset-password")
-	public String showResetPassword(@RequestParam String token, HttpSession session, Model m) {
-		User userByToken = userService.getUserByToken(token);
-		if (userByToken == null) {
-			m.addAttribute("msg", "Your link is invalid or expired!!!");
-			return "message";
-		}
-		m.addAttribute("token", token);
-		return "reset_password";
-	}
-
-	@PostMapping("/reset-password")
-	public String resetPassword(@RequestParam String token, @RequestParam String password, HttpSession session,
-			Model m) {
-		User userByToken = userService.getUserByToken(token);
-
-		if (userByToken == null) {
-			m.addAttribute("errorMsg", "Your link is invalid or expired!!!");
-			return "message";
-		} else {
-			userByToken.setPasswordHash(passwordEncoder.encode(password));
-			userByToken.setResetToken(null);
-			userService.updateUser(userByToken);
-			/* session.setAttribute("succMsg", "Password change successfully!"); */
-			m.addAttribute("msg", "Password change successfully!");
-			return "message";
-		}
-
-	}
-
+    }
 }

@@ -9,15 +9,15 @@ import org.springframework.data.jpa.repository.Query;
 import vn.iotstar.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
-	Optional<User> findByEmail(String email);
+    Optional<User> findByEmail(String email);
 
-	@Query("SELECT u FROM User u WHERE u.role != '0'")
-	List<User> findUsersWithRole();
+    @Query("SELECT u FROM User u WHERE u.role != '0'")
+    List<User> findUsersWithRole();
 
-	public Boolean existsByEmail(String email);
+    public Boolean existsByEmail(String email);
 
-	public User findUserByEmail(String email);
+    public User findUserByEmail(String email);
 
-	public User findByResetToken(String token);
+    public User findByResetToken(String token);
 
 }

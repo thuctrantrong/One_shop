@@ -27,8 +27,7 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#!">Settings</a></li>
-                <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                <li><a class="dropdown-item" href="/biopage">Thông tin</a></li>
                 <li><hr class="dropdown-divider" /></li>
                 <li><a class="dropdown-item" href="#!">Logout</a></li>
             </ul>
@@ -46,13 +45,21 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                         User
                     </a>
-                    <a class="nav-link" href="/shop">
+                    <a class="nav-link" href="/admin/shop">
                         <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                         Shop
                     </a>
-                    <a class="nav-link" href="/product">
+                    <a class="nav-link" href="/admin/product">
                         <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                         Product
+                    </a>
+                    <a class="nav-link" href="/admin/category">
+                        <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                        Category
+                    </a>
+                    <a class="nav-link" href="/admin/promotion">
+                        <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                        Voucher
                     </a>
                 </div>
             </div>
@@ -65,7 +72,7 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">Thông tin shop</h1>
+                <h1 class="mt-4">Thông tin Product</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
                     <li class="breadcrumb-item active">Tables</li>
@@ -73,7 +80,7 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table me-1"></i>
-                        DataTable Shops
+                        DataTable Products
                     </div>
                     <div class="card-body">
                         <table id="datatablesSimple">
@@ -149,7 +156,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="productImageUrl" class="form-label">Ảnh sản phẩm</label>
-                            <input type="file" class="form-control" id="productImageUrl" accept="image/*" required>
+                            <div>
+                                <!-- Hiển thị ảnh hiện tại nếu có -->
+                                <img id="currentProductImage" src="" alt="Current Product Image" style="max-width: 200px; margin-bottom: 10px;">
+                            </div>
+                            <input type="file" class="form-control" id="productImageUrl" accept="image/*">
                         </div>
                         <div class="mb-3">
                             <label for="productDate" class="form-label">Ngày tạo</label>

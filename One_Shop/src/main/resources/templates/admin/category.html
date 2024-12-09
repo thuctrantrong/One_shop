@@ -22,6 +22,7 @@
         <div class="input-group">
         </div>
     </form>
+    <!-- Navbar-->
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
@@ -71,7 +72,7 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">Thông tin shop</h1>
+                <h1 class="mt-4">Thông tin Category</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
                     <li class="breadcrumb-item active">Tables</li>
@@ -89,7 +90,6 @@
                                 <th>Name</th>
                                 <th>description</th>
                                 <th>createdAt</th>
-                                <th>Oner</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
@@ -101,7 +101,6 @@
                                 <th>Name</th>
                                 <th>description</th>
                                 <th>createdAt</th>
-                                <th>Oner</th>
                                 <th>Actions</th>
                             </tr>
                             </tfoot>
@@ -129,18 +128,23 @@
                 <div class="modal-body">
                     <!-- Form chỉnh sửa thông tin -->
                     <form id="editForm">
-                        <input type="hidden" class="form-control" id="shopId" name="shopId"  required>
+                        <input type="hidden" class="form-control" id="categoryId" name="categoryId"  required>
                         <div class="mb-3">
-                            <label for="shopname" class="form-label">Tên shop</label>
-                            <input type="text" class="form-control" id="shopname" required>
+                            <label for="categoryname" class="form-label">Tên category</label>
+                            <input type="text" class="form-control" id="categoryname" required>
                         </div>
                         <div class="mb-3">
-                            <label for="shopdescription" class="form-label">Mô tả</label>
-                            <input type="text" class="form-control" id="shopdescription" required>
+                            <label for="categorydescription" class="form-label">Mô tả</label>
+                            <input type="text" class="form-control" id="categorydescription" required>
                         </div>
+                        <label for="categorycondition" class="form-label">Condition</label>
+                        <select class="form-control" id="categorycondition" required>
+                            <option value="1">1</option>
+                            <option value="0">0</option>
+                        </select>
                         <div class="mb-3">
-                            <label for="shopdate" class="form-label">Ngày tạo</label>
-                            <input type="datetime-local" class="form-control" id="shopdate" readonly>
+                            <label for="categorydate" class="form-label">Ngày tạo</label>
+                            <input type="datetime-local" class="form-control" id="categorydate" readonly>
                         </div>
                         <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
                     </form>
@@ -152,9 +156,9 @@
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<script src="../../js/adminshop/adminshop.js"></script>
+<script src="../../js/admincategory/admincategory.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-<script src="../../js/adminshop/datatables-simple-demo.js"></script>
+<script src="../../js/admincategory/datatables-simple-demo.js"></script>
 </body>
 </html>

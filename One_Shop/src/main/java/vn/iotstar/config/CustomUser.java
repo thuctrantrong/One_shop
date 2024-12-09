@@ -1,13 +1,12 @@
 package vn.iotstar.config;
 
-import java.util.Arrays;
-import java.util.Collection;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import vn.iotstar.entity.User;
+
+import java.util.Arrays;
+import java.util.Collection;
 
 public class CustomUser implements UserDetails {
 	/**
