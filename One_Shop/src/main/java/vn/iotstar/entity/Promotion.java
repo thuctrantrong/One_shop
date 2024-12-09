@@ -30,9 +30,6 @@ public class Promotion {
 	@Column(nullable = false, length = 100)
 	private String name;
 
-	@Column(nullable = false, length = 15)
-	private String discountType;
-
 	@Column(nullable = false)
 	private Double discountValue;
 
@@ -42,11 +39,9 @@ public class Promotion {
 	@Column(nullable = false)
 	private LocalDate endDate;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ShopID")
-	private Shop shop;
+	@Column(nullable = false, columnDefinition = "DATE DEFAULT GETDATE()")
+	private LocalDate createdAt;
 
-	@Column(nullable = false, columnDefinition = "DATETIME DEFAULT GETDATE()")
-	private LocalDateTime createdAt;
+	private int condition;
 
 }

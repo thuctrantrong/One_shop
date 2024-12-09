@@ -1,8 +1,8 @@
 let products = [];
 window.addEventListener('DOMContentLoaded', event => {
-    fetchShop();  // Gọi hàm fetch để lấy dữ liệu từ API
+    fetchproduct();  // Gọi hàm fetch để lấy dữ liệu từ API
 
-    function fetchShop() {
+    function fetchproduct() {
         fetch('http://localhost:9090/admin/api/product')
             .then(response => response.json())
             .then(data => {
@@ -80,6 +80,14 @@ function editProduct(productId) {
         document.getElementById('productDate').value = product.createdAt
         document.getElementById('productPrice').value = product.price;
         document.getElementById('productStock').value = product.stock;
+        const currentImage = document.getElementById('currentProductImage');
+        if (product.imageUrl) {
+            currentImage.src = product.imageUrl;
+            currentImage.style.display = 'block';  // Hiển thị ảnh
+        } else {
+            currentImage.style.display = 'none';  // Ẩn ảnh nếu không có URL
+        }
+
         document.getElementById('productImageUrl').value = '';    }
 }
 document.getElementById('editForm').addEventListener('submit', function(event) {
@@ -106,9 +114,11 @@ document.getElementById('editForm').addEventListener('submit', function(event) {
     formData.append('price', updatedProduct.price.toString());  // Đảm bảo giá trị là chuỗi
     formData.append('stock', updatedProduct.stock.toString());    // Đảm bảo stock là chuỗi
 
-    // Thêm ảnh nếu có
     if (productImageUrl) {
         formData.append('file', productImageUrl);  // Đảm bảo gửi tệp ảnh dưới trường "file"
+    } else {
+        // Nếu không có ảnh mới, gửi URL ảnh cũ
+        formData.append('imageUrl', document.getElementById('productImageUrl').value);
     }
 
     // Gửi yêu cầu PUT với FormData
@@ -125,6 +135,25 @@ document.getElementById('editForm').addEventListener('submit', function(event) {
         .catch(error => {
             console.error('Lỗi khi cập nhật sản phẩm:', error);
         });
+});
+document.getElementById('productImageUrl').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    const imagePreview = document.getElementById('currentProductImage');
+
+    if (file) {
+        const reader = new FileReader();
+
+        // Khi file được đọc xong, hiển thị ảnh
+        reader.onload = function(e) {
+            imagePreview.src = e.target.result;  // Đặt src của img bằng data URL
+            imagePreview.style.display = 'block';  // Hiển thị ảnh
+        };
+
+        // Đọc file ảnh
+        reader.readAsDataURL(file);
+    } else {
+        imagePreview.style.display = 'none';  // Ẩn ảnh nếu không có file
+    }
 });
 
 

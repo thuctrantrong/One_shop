@@ -12,7 +12,6 @@ import java.util.List;
 
 @RequestMapping("/admin/api/product")
 @RestController
-@CrossOrigin()
 public class ResultAPIProduct {
 
     @Autowired
