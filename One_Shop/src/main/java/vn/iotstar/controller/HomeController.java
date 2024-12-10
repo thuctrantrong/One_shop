@@ -8,14 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.http.HttpSession;
-import vn.iotstar.entity.Promotion;
+import vn.iotstar.entity.Cart;
+import vn.iotstar.entity.Category;
 import vn.iotstar.entity.User;
-import vn.iotstar.service.PromotionService;
+import vn.iotstar.service.CartService;
+import vn.iotstar.service.CategoryService;
 import vn.iotstar.service.UserService;
-import vn.iotstar.service.impl.UserServiceImpl;
 import vn.iotstar.util.CommonUtil;
 
 import java.io.IOException;
@@ -28,9 +28,13 @@ public class HomeController {
     @Autowired
     private UserService userService;
     @Autowired
+    private CartService cartService;
+    @Autowired
     private BCryptPasswordEncoder passwordEncoder;
     @Autowired
     private CommonUtil commonUtil;
+    @Autowired
+    private CategoryService categoryService;
     @GetMapping("/")
     public String home() {
         return "/homepage";
@@ -45,8 +49,11 @@ public class HomeController {
         return "/admin/shop";
     }
     @GetMapping("/admin/product")
-    public String homeadminproduct() {
-        return "/admin/product";
+    public String homeadminproduct(Model model) {
+
+        List<Category> categories = categoryService.findAllCategory();
+        model.addAttribute("categories", categories);
+        return "admin/product";
     }
     @GetMapping("/admin/category")
     public String homeadmincategory() {
@@ -60,6 +67,17 @@ public class HomeController {
     public String productdetails() {
         return "/user/product-details.html";
     }
+    @GetMapping("/user/getUserId")
+    @ResponseBody
+    public String getUserId(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        String email = (String) session.getAttribute("useremail");
+        User user = userService.findUserByEmail(email);
+        int userId = user.getUserID();
+        return String.valueOf(userId);
+    }
+
+
     @GetMapping("/biopage")
     public String bio(HttpSession session, Model model) {
         String userEmail = (String) session.getAttribute("useremail");
@@ -112,6 +130,30 @@ public class HomeController {
     @GetMapping("/user")
     public String homeuser() {
         return "user/home";
+    }
+//    public User getLoggedInUserDetails(HttpServletRequest request) {
+//        HttpSession session = request.getSession();
+//        String email = (String) session.getAttribute("useremail");
+//        User userDtls = userService.findUserByEmail(email);
+//        return userDtls;
+//    }
+    @GetMapping("/user/cart")
+    public String loadCartPage(Model m, HttpSession session) {
+        String email = (String) session.getAttribute("useremail");
+        User user = userService.findUserByEmail(email);
+        List<Cart> carts = cartService.getCartsByUser(user.getUserID());
+        m.addAttribute("carts", carts);
+
+        if (!carts.isEmpty()) {
+
+            Double totalOrderPrice = carts.stream().mapToDouble(cart -> cart.getTotalPrice()).sum();
+
+            String formattedTotalPrice = String.format("%.2f", totalOrderPrice);
+            m.addAttribute("totalOrderPrice", formattedTotalPrice);
+        } else {
+            session.setAttribute("errorMsg", "Your shopping cart is empty. Please add more products.");
+        }
+        return "user/cart";
     }
 
     @GetMapping("/signin")
@@ -209,4 +251,5 @@ public class HomeController {
         }
 
     }
+
 }

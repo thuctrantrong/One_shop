@@ -10,4 +10,6 @@ public interface ProductService {
     public Product updateProduct(int productId, Product product, MultipartFile file);
     public boolean deleteProduct(int shopId);
     List<Product> findByOwnerId(int shopId);
+
+    public Product addProduct(Product product, MultipartFile file) throws Exception;
 }

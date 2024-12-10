@@ -45,13 +45,16 @@ window.addEventListener('DOMContentLoaded', event => {
 function editcategory(categoryId) {
 
     const category = categorys.find(c => c.categoryId === categoryId)
+    console.log("Đang xóa khuyến mãi với ID: " + categoryId);
 
     if (category) {
         document.getElementById('categoryId').value = category.categoryId;
         document.getElementById('categoryname').value = category.name;
         document.getElementById('categorydescription').value = category.description;
         document.getElementById('categorycondition').value = category.condition;
-        document.getElementById('categorydate').value = category.createdAt;
+        const createdAt = new Date(category.createdAt.replace(' ', 'T'));  // Thay đổi dấu cách thành dấu 'T'
+        const formattedDate = createdAt.toISOString().slice(0, 16);
+        document.getElementById('categorydate').value = formattedDate;
     }
 }
 

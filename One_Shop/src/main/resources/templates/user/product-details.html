@@ -101,8 +101,8 @@
      -->
 				<div class="menu" id="navar">
 					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li class="drop-menu"><a href="product.html">Products<span>&#11167</span></a>
+						<li><a href="/">Home</a></li>
+						<li class="drop-menu"><a href="/userproduct">Products<span>&#11167</span></a>
 							<div class="sub-menu">
 								<ul>
 									<li><img class="logo-submenu" src="img/submenu.webp"
@@ -160,9 +160,18 @@
 					</button>
 				</form>
 
-				</a> <a class="btn-sm-square bg-white rounded-circle ms-3"
-						href="admin.html"> <small class="fa fa-user text-body"></small>
-			</a> <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
+				<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+						<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="/biopage">Thông tin</a></li>
+							<li><hr class="dropdown-divider" /></li>
+							<li><a class="dropdown-item" href="/logout">Logout</a></li>
+							<li><a class="dropdown-item" href="/user/user-orders">My Order</a></li>
+						</ul>
+					</li>
+				</ul>
+				<a class="btn-sm-square bg-white rounded-circle ms-3" href="/user/cart">
 				<small class="fa fa-shopping-bag text-body"></small>
 			</a>
 			</div>
@@ -270,8 +279,9 @@
 		<!-- Card cho chi tiết sản phẩm -->
 		<div class="card">
 			<div class="container-fluid">
-				<form name="frmsanphamchitiet" id="frmsanphamchitiet" method="post"
-					  action="/php/twig/frontend/giohang/themvaogiohang">
+				<form name="frmsanphamchitiet" id="frmsanphamchitiet" method="POST"
+					  action="/cart/add">
+					<input type="hidden" name="userId" id="userId" >
 					<input type="hidden" name="sp_ma" id="sp_ma"> <input
 						type="hidden" name="sp_ten" id="sp_ten"> <input
 						type="hidden" name="sp_gia" id="sp_gia"> <input
@@ -328,18 +338,29 @@
 
 							<!-- Các nút hành động -->
 							<div class="action">
+								<button type="submit" class="add-to-cart btn btn-outline-primary border-2 py-2 px-4 mt-2" id="btnThemVaoGioHang">
+									Thêm vào giỏ hàng
+								</button>
 								<a
-										class="add-to-cart btn btn-outline-primary border-2 py-2 px-4 mt-2"
-										id="btnThemVaoGioHang"> Thêm vào giỏ hàng </a> <a
 									class="add-to-cart btn btn-outline-primary border-2 py-2 px-4 mt-2"
 									href="/userproduct"> Back </a> <a
-									class="like btn border-2 py-2 px-4 mt-2 rounded-pill" href="#">
+									class="like btn border-2 py-2 px-4 mt-2 rounded-pill" href="userproduct">
 								<span class="fa fa-heart"></span>
 							</a>
 							</div>
+
 						</div>
 					</div>
 				</form>
+			</div>
+		</div>
+		<div class="container mt-3">
+			<div th:if="${message != null}" class="alert alert-success text-center">
+				<span th:text="${message}"></span>
+			</div>
+
+			<div th:if="${errorMessage != null}" class="alert alert-danger text-center">
+				<span th:text="${errorMessage}"></span>
 			</div>
 		</div>
 		<!-- Card cho thông tin chi tiết sản phẩm thêm -->
@@ -361,53 +382,73 @@
 			const productDetails = document.getElementById('product-details');
 			const productId = new URLSearchParams(window.location.search).get('id');
 
-			if (productId) {
-				// Lấy danh sách sản phẩm từ localStorage
-				const products = JSON.parse(localStorage.getItem('products')) || [];
+			fetch('http://localhost:9090/user/getUserId')
+					.then(response => {
+						if (!response.ok) {
+							throw new Error('Không thể lấy User ID');
+						}
+						return response.text(); // Giả sử userId là một chuỗi
+					})
+					.then(userId => {
+						sessionStorage.setItem("userId", userId); // Lưu vào sessionStorage
 
-				// Tìm sản phẩm theo ID
-				const selectedProduct = products.find(p => p.productId.toString() === productId);
+						// Kiểm tra userId đã được lưu chưa
+						console.log("User ID from sessionStorage: ", sessionStorage.getItem("userId"));
 
-				if (selectedProduct) {
-					// Cập nhật thông tin sản phẩm vào giao diện
-					document.getElementById('sp_ma').value = selectedProduct.productId;
-					document.getElementById('sp_ten').value = selectedProduct.name;
-					document.getElementById('sp_gia').value = selectedProduct.price;
-					document.getElementById('hinhdaidien').value = selectedProduct.imageUrl;
+						// Nếu có productId trong URL, cập nhật thông tin sản phẩm
+						if (productId) {
+							// Lấy danh sách sản phẩm từ localStorage
+							const products = JSON.parse(localStorage.getItem('products')) || [];
 
-					// Cập nhật ảnh sản phẩm
-					document.getElementById('thumbnail-image').src = selectedProduct.imageUrl || '/img/default-image.jpg';
+							// Tìm sản phẩm theo ID
+							const selectedProduct = products.find(p => p.productId.toString() === productId);
 
-					// Cập nhật tên sản phẩm
-					document.getElementById('product-name').innerText = selectedProduct.name || 'Tên sản phẩm không có sẵn';
+							if (selectedProduct) {
+								// Cập nhật các trường thông tin sản phẩm
+								document.getElementById('userId').value = userId;
+								document.getElementById('sp_ma').value = selectedProduct.productId;
+								document.getElementById('sp_ten').value = selectedProduct.name;
+								document.getElementById('sp_gia').value = selectedProduct.price;
+								document.getElementById('hinhdaidien').value = selectedProduct.imageUrl;
 
-					// Cập nhật giá cũ và giá mới
-					document.getElementById('current-price').innerText = selectedProduct.price || 'Liên hệ';
-					document.getElementById('old-price').innerText = selectedProduct.oldPrice || 'Liên hệ';
+								// Cập nhật ảnh sản phẩm
+								document.getElementById('thumbnail-image').src = selectedProduct.imageUrl || '/img/default-image.jpg';
 
-					// Cập nhật mô tả
-					document.getElementById('product-description').innerText = selectedProduct.description || 'Không có mô tả cho sản phẩm này.';
+								// Cập nhật tên sản phẩm
+								document.getElementById('product-name').innerText = selectedProduct.name || 'Tên sản phẩm không có sẵn';
 
-					// Cập nhật số lượng đánh giá
-					document.getElementById('product-reviews').innerText = selectedProduct.reviews || 'Chưa có đánh giá';
+								// Cập nhật giá cũ và giá mới
+								document.getElementById('current-price').innerText = selectedProduct.price || 'Liên hệ';
+								document.getElementById('old-price').innerText = selectedProduct.oldPrice || 'Liên hệ';
 
-					// Cập nhật số lượng còn lại
-					document.getElementById('stock-count').innerText = selectedProduct.stock || '0';
+								// Cập nhật mô tả
+								document.getElementById('product-description').innerText = selectedProduct.description || 'Không có mô tả cho sản phẩm này.';
 
-					// Cập nhật số lượng vào form
-					document.getElementById('sp_soluong').value = document.getElementById('quantity').value;
-				} else {
-					productDetails.innerHTML = '<p style="color: red; font-size: 1.2rem; font-weight: bold;">Không tìm thấy thông tin sản phẩm!</p>';
-				}
-			} else {
-				productDetails.innerHTML = '<p style="color: red; font-size: 1.2rem; font-weight: bold;">Không có ID sản phẩm trong URL!</p>';
-			}
+								// Cập nhật số lượng đánh giá
+								document.getElementById('product-reviews').innerText = selectedProduct.reviews || 'Chưa có đánh giá';
 
-			// Cập nhật số lượng khi thay đổi
-			document.getElementById('quantity').addEventListener('change', (e) => {
-				document.getElementById('sp_soluong').value = e.target.value;
-			});
+								// Cập nhật số lượng còn lại
+								document.getElementById('stock-count').innerText = selectedProduct.stock || '0';
+
+								// Cập nhật số lượng vào form
+								document.getElementById('sp_soluong').value = document.getElementById('quantity').value;
+							} else {
+								productDetails.innerHTML = '<p style="color: red; font-size: 1.2rem; font-weight: bold;">Không tìm thấy thông tin sản phẩm!</p>';
+							}
+						} else {
+							productDetails.innerHTML = '<p style="color: red; font-size: 1.2rem; font-weight: bold;">Không có ID sản phẩm trong URL!</p>';
+						}
+
+						document.getElementById('quantity').addEventListener('change', (e) => {
+							document.getElementById('sp_soluong').value = e.target.value;
+						});
+					})
+					.catch(error => {
+						console.error('Error:', error);
+						productDetails.innerHTML = '<p style="color: red; font-size: 1.2rem; font-weight: bold;">Lỗi khi lấy thông tin người dùng!</p>';
+					});
 		});
+
 	</script>
 
 	<!-- PRODUCT END -->
@@ -500,6 +541,7 @@
 <script src="lib/easing/easing.min.js"></script>
 <script src="lib/waypoints/waypoints.min.js"></script>
 <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
 
 <!-- Template Javascript -->
 <script src="js/main.js"></script>

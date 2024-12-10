@@ -27,7 +27,7 @@ public class AuthSuccessHandlerImpl implements AuthenticationSuccessHandler {
 		HttpSession session = request.getSession();
 		session.setAttribute("useremail", userId);
 		if (roles.contains("ROLE_ADMIN")) {
-			response.sendRedirect("/admin/");
+			response.sendRedirect("/admin");
 		} else {
 			response.sendRedirect("/user");
 		}

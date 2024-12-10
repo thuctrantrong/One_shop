@@ -27,8 +27,8 @@ window.addEventListener('DOMContentLoaded', event => {
                         <td>${employee.createdAt || 'N/A'}</td>
                         <td>${employee.role || 'N/A'}</td>
                         <td>
-                            <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal" onclick="editEmployee(${employee.userId})">Sửa</button>
-                            <button class="btn btn-danger btn-sm" onclick="deleteEmployee(${employee.userId})">Xóa</button>
+                            <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal" onclick="editEmployee(${employee.userID})">Sửa</button>
+                            <button class="btn btn-danger btn-sm" onclick="deleteEmployee(${employee.userID})">Xóa</button>
                         </td>
                         `;
                         tableBody.appendChild(row);  // Thêm dòng vào bảng
@@ -48,8 +48,10 @@ window.addEventListener('DOMContentLoaded', event => {
             });
     }
 });
-function deleteEmployee(userId) {
-    fetch(`http://localhost:9090/admin/api/employees/delete/${userId}`, {
+function deleteEmployee(userID) {
+    console.log("Đang xóa khuyến mãi với ID: " + userID);
+
+    fetch(`http://localhost:9090/admin/api/employees/delete/${userID}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -69,17 +71,20 @@ function deleteEmployee(userId) {
 }
 
 // Hàm gọi khi nhấn nút "Sửa" để chỉnh sửa thông tin nhân viên
-function editEmployee(userId) {
-    // Lấy thông tin nhân viên từ API
-    const user = users.find(s => s.userId === userId)
+function editEmployee(userID) {
+    console.log("Đang xóa khuyến mãi với ID: " + userID);
+    const user = users.find(s => s.userID === userID)
 
     if (user) {
-        document.getElementById('userId').value = user.userId;
+        document.getElementById('userId').value = user.userID;
         document.getElementById('username').value = user.username;
         document.getElementById('userfullname').value = user.fullName;
         document.getElementById('userphoneNumber').value = user.phoneNumber;
         document.getElementById('useraddress').value = user.address;
-        document.getElementById('userdate').value = user.createdAt;
+        const createdAt = new Date(user.createdAt.replace(' ', 'T'));  // Thay đổi dấu cách thành dấu 'T'
+        const formattedDate = createdAt.toISOString().slice(0, 16);
+
+        document.getElementById('userdate').value = formattedDate;
         document.getElementById('userrole').value = user.role;
     }
 }

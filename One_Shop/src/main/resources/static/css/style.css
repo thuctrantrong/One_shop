@@ -200,7 +200,7 @@ a {
 }
 
 .bg-icon {
-  background: url() center center repeat;
+  background: center center repeat;
   background-size: contain;
 }
 

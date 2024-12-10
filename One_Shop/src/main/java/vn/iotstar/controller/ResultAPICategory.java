@@ -5,9 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.iotstar.entity.Category;
-import vn.iotstar.entity.Shop;
 import vn.iotstar.service.CategoryService;
-import vn.iotstar.service.ShopService;
 
 import java.util.List;
 

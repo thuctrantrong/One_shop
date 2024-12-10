@@ -29,7 +29,7 @@
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="/biopage">Thông tin</a></li>
                 <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="#!">Logout</a></li>
+                <li><a class="dropdown-item" href="/logout">Logout</a></li>
             </ul>
         </li>
     </ul>
@@ -45,10 +45,7 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     User
                     </a>
-                    <a class="nav-link" href="/admin/shop">
-                        <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                        Shop
-                    </a>
+
                     <a class="nav-link" href="/admin/product">
                         <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                         Product
@@ -57,10 +54,11 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                         Category
                     </a>
-                    <a class="nav-link" href="/admin/promotion">
+                    <a class="nav-link" href="/admin/orders">
                         <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                        Voucher
+                        Orders
                     </a>
+
                 </div>
             </div>
             <div class="sb-sidenav-footer">
@@ -162,7 +160,6 @@
                             <select class="form-control" id="userrole" required>
                                 <option value="ROLE_ADMIN">ROLE_ADMIN</option>
                                 <option value="ROLE_ADMIN">ROLE_USER</option>
-                                <option value="ROLE_ADMIN">ROLE_SELLER</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
@@ -177,5 +174,18 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
 <script src="../../js/adminuser/datatables-simple-demo.js"></script>
+<script>
+    $(document).ready(function() {
+        // Check if there's a message or error message
+        var message = "${message}";
+        var errorMessage = "${errorMessage}";
+
+        if (message) {
+            $('#message-container').html('<div class="alert alert-success">' + message + '</div>');
+        } else if (errorMessage) {
+            $('#message-container').html('<div class="alert alert-danger">' + errorMessage + '</div>');
+        }
+    });
+</script>
 </body>
 </html>

@@ -10,4 +10,5 @@ class OneShopApplicationTests {
 	void contextLoads() {
 	}
 
+
 }

@@ -1,5 +1,6 @@
 package vn.iotstar.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import vn.iotstar.entity.Shop;
 import vn.iotstar.entity.User;
-import vn.iotstar.repository.ShopRepository;
 import vn.iotstar.repository.UserRepository;
 import vn.iotstar.service.UserService;
 
@@ -21,8 +20,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	@Autowired
-	private ShopRepository shopRepository;
+
 
 	public UserServiceImpl(UserRepository userRepository) {
 		super();
@@ -66,11 +64,6 @@ public class UserServiceImpl implements UserService {
 			User existingUser = User.get();
 			existingUser.setRole("0");
 			userRepository.save(existingUser);
-			List<Shop> shops = shopRepository.findByOwnerId(userId);
-			for (Shop shop : shops) {
-				shop.setCondition(0);
-				shopRepository.save(shop);
-			}
 			return true;
 		}
 		return false;
@@ -99,7 +92,7 @@ public class UserServiceImpl implements UserService {
 
 		String encodePassword = passwordEncoder.encode(user.getPasswordHash());
 		user.setPasswordHash(encodePassword);
-
+		user.setCreatedAt(LocalDateTime.now());
 		User savedUser = userRepository.save(user);
 		return savedUser;
 	}

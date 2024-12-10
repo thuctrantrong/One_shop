@@ -23,7 +23,6 @@ window.addEventListener('DOMContentLoaded', event => {
                         <td>${product.stock || 'N/A'}</td>
                         <td><img src="${product.imageUrl || 'default-image.jpg'}" alt="Image" style="width: 100px; height: auto;"></td>
                         <td>${product.category?.name || 'N/A'}</td>
-                        <td>${product.shop?.name || 'N/A'}</td>
                         <td>
                             <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal" onclick="editProduct(${product.productId})">Sửa</button>
                             <button class="btn btn-danger btn-sm" onclick="deleteProduct(${product.productId})">Xóa</button>
@@ -48,6 +47,8 @@ window.addEventListener('DOMContentLoaded', event => {
 });
 // Hàm gọi khi nhấn nút "Delete"
 function deleteProduct(ProductId) {
+    console.log("Đang xóa khuyến mãi với ID: " + ProductId);
+
     fetch(`http://localhost:9090/admin/api/product/delete/${ProductId}`, {
         method: 'DELETE',
         headers: {
@@ -70,6 +71,8 @@ function deleteProduct(ProductId) {
 
 // Hàm gọi khi nhấn nút "Edit"
 function editProduct(productId) {
+    console.log("Đang xóa khuyến mãi với ID: " + productId);
+
     const product = products.find(p => p.productId === productId);
 
     if (product) {
@@ -77,7 +80,9 @@ function editProduct(productId) {
         document.getElementById('productId').value = product.productId; // Gán lại productId
         document.getElementById('productName').value = product.name;
         document.getElementById('productDescription').value = product.description; // Sửa dòng này
-        document.getElementById('productDate').value = product.createdAt
+        const createdAt = new Date(product.createdAt.replace(' ', 'T'));  // Thay đổi dấu cách thành dấu 'T'
+        const formattedDate = createdAt.toISOString().slice(0, 16);
+        document.getElementById('productDate').value = formattedDate;
         document.getElementById('productPrice').value = product.price;
         document.getElementById('productStock').value = product.stock;
         const currentImage = document.getElementById('currentProductImage');

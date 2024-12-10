@@ -3,18 +3,16 @@ package vn.iotstar.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import vn.iotstar.entity.Category;
 import vn.iotstar.entity.Product;
-import vn.iotstar.entity.Shop;
-import vn.iotstar.entity.User;
 import vn.iotstar.repository.ProductRepository;
-import vn.iotstar.repository.ShopRepository;
 import vn.iotstar.service.ProductService;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -51,7 +49,6 @@ public class ProductServiceImpl implements ProductService {
                 existingProduct.setImageUrl(imageUrl);
             }
 
-            // Lưu sản phẩm đã cập nhật vào cơ sở dữ liệu
             return productRepository.save(existingProduct);
         }
         return null;
@@ -61,13 +58,13 @@ public class ProductServiceImpl implements ProductService {
         try {
             String fileName = UUID.randomUUID().toString() + "-" + file.getOriginalFilename();
 
-            Path path = Paths.get("uploads/product-images/" + fileName);
+            Path path = Paths.get("uploads/" + fileName);
 
             Files.createDirectories(path.getParent());
 
             file.transferTo(path);
 
-            return "/uploads/product-images/" + fileName;
+            return "/uploads/" + fileName;
         } catch (IOException e) {
             throw new RuntimeException("Failed to store image", e);
         }
@@ -89,4 +86,29 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> findByOwnerId(int shopId) {
         return List.of();
     }
+
+    @Override
+    public Product addProduct(Product product, MultipartFile file) throws Exception {
+
+        product.setName(product.getName());
+        product.setDescription(product.getDescription());
+        product.setPrice(product.getPrice());
+        product.setStock(product.getStock());
+        product.setCondition(product.getCondition());
+        product.setCreatedAt(LocalDateTime.now());
+        product.setCategory(product.getCategory());
+        if (file != null && !file.isEmpty()) {
+            String imageUrl = saveImage(file);
+            if (imageUrl == null) {
+                throw new Exception("Failed to save image");
+            }
+            product.setImageUrl(imageUrl);
+        }
+        try {
+            return productRepository.save(product);
+        } catch (Exception e) {
+            throw new Exception("Error saving product: " + e.getMessage(), e);
+        }
+    }
+
 }

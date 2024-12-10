@@ -21,9 +21,9 @@ import lombok.NoArgsConstructor;
 public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer categoryId;
+	private int categoryId;
 
-	@Column(nullable = false, length = 100)
+	@Column(nullable = false, length = 100, columnDefinition = "NVARCHAR(255)")
 	private String name;
 
 	@Column(columnDefinition = "NVARCHAR(MAX)")

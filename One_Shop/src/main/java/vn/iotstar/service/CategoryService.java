@@ -11,4 +11,5 @@ public interface CategoryService {
     public Category updateCategory(int categoryId, Category Category);
     public boolean deleteCategory(int productId);
     List<Category> findByOwnerId(int categoryId);
+
 }

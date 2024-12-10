@@ -43,19 +43,38 @@ window.addEventListener('DOMContentLoaded', event => {
             });
     }
 });
-
+function deletepromotion(promotionId) {
+    fetch(`http://localhost:9090/admin/api/promotion/delete/${promotionId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(response => {
+            if (response.ok) {
+                console.log('promotion deleted successfully');
+                location.reload();  // Làm mới trang sau khi xóa
+            } else {
+                console.error('Failed to delete promotion');
+            }
+        })
+        .catch(error => {
+            console.error('Lỗi khi xóa promotion:', error);
+        });
+}
 // Hàm gọi khi nhấn nút "Edit"
 function editpromotion(promotionId) {
 
     const promotion = promotions.find(c => c.promotionId === promotionId)
-
     if (promotion) {
         document.getElementById('promotionId').value = promotion.promotionId;
         document.getElementById('promotionname').value = promotion.name;
         document.getElementById('promotiondiscountValue').value = promotion.discountValue;
         document.getElementById('promotionstartDate').value = promotion.startDate;
         document.getElementById('promotionendDate').value = promotion.endDate;
-        document.getElementById('promotioncreatedAt').value = promotion.createdAt;
+        const createdAt = new Date(promotion.createdAt.replace(' ', 'T'));  // Thay đổi dấu cách thành dấu 'T'
+        const formattedDate = createdAt.toISOString().slice(0, 16);
+        document.getElementById('promotioncreatedAt').value = formattedDate;
 
     }
 }

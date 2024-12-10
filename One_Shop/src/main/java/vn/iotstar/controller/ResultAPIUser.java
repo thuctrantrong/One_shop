@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import vn.iotstar.entity.Shop;
 import vn.iotstar.entity.User;
-import vn.iotstar.service.ShopService;
 import vn.iotstar.service.UserService;
 
 import java.util.List;
@@ -16,7 +14,6 @@ import java.util.List;
 public class ResultAPIUser {
     @Autowired
     private UserService userService;
-
 
     @GetMapping
     public List<User> getAllEmployees() {

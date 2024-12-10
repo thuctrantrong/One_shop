@@ -2,11 +2,7 @@ package vn.iotstar.entity;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,17 +18,18 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userID;
-
+	@Column(columnDefinition = "NVARCHAR(255)")
 	private String username;
-
+	@Column(columnDefinition = "NVARCHAR(255)")
 	private String passwordHash;
-
+	@Column(columnDefinition = "NVARCHAR(255)")
 	private String email;
 
+	@Column(columnDefinition = "nvarchar(50)")
 	private String fullName;
-
+	@Column(columnDefinition = "NVARCHAR(255)")
 	private String phoneNumber;
-
+	@Column(columnDefinition = "NVARCHAR(255)")
 	private String address;
 
 	private String role;

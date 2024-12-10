@@ -110,73 +110,51 @@
         
          <a href="contact.html" class="nav-item nav-link">Contact Us</a>
           -->
-          <div class="menu" id="navar">
-           <ul>
-             <li>
-               <a href="index.html">Home</a>
-             </li>
-             <li class="drop-menu">
-               <a href="product.html">Products<span>&#11167</span></a>
-               <div class="sub-menu">
-                 <ul>
-                   <li>
-                   <img class="logo-submenu" src="img/submenu.webp" alt="Image" />
-                   </li>
-                 </ul>
-                 <ul>
-                   <li><h4 class="submenu-h4">Trang điểm</h4></li>
-                   <li><a href="#">Kem nền</a> </li>
-                   <li><a href="#">Phấn phủ</a> </li>
-                   <li><a href="#">Phấn mắt</a> </li>
-                   <li><a href="#">Eyeliner</a> </li>
-                   <li><a href="#">Son môi</a> </li>
-                 </ul>
-                 <ul>
-                   <li><h4 class="submenu-h4">Dưỡng da</h4></li>
-                   <li><a href="#">Mặt nạ</a> </li>
-                   <li><a href="#">Serum</a> </li>
-                   <li><a href="#">Phấn mắt</a> </li>
-                   <li><a href="#">Eyeliner</a> </li>
-                   <li><a href="#">Tẩy trang</a> </li>
-                 </ul>
-                 <ul>
-                   <li><h4 class="submenu-h4">Sản phẩm khác</h4></li>
-                   <li><a href="#">Kem nền</a> </li>
-                   <li><a href="#">Phấn phủ</a> </li>
-                   <li><a href="#">Phấn mắt</a> </li>
-                   <li><a href="#">Eyeliner</a> </li>
-                   <li><a href="#">Son môi</a> </li>
-                 </ul>
-                 
-               </div>
-             </li>
-             <li class="drop-two">
-                <a href="#">About us <span>&#11167</span></a>
-                <div class="menu-two">
-                  <ul>
-                    <li><a href="#">Liên hệ với chúng tôi</a> </li>
-                    <li><a href="about.html">Về Cosmetics</a></li>
-                    <li><a href="lie.html">Đổi trả sản phẩm</a></li>
-                  </ul>
-                </div>
-              </li>
-           </ul>
+           <div class="menu" id="navar">
+               <ul>
+                   <li><a href="/user">Home</a></li>
+                   <li class="drop-menu"><a href="/userproduct">Products<span>&#11167</span></a>
+                       <div class="sub-menu">
+                           <ul>
+                               <li><img class="logo-submenu" src="/img/submenu.webp"
+                                        alt="Image" /></li>
+                           </ul>
+                       </div></li>
+                   <li class="drop-two"><a href="#">About us <span>&#11167</span></a>
+                       <div class="menu-two">
+                           <ul>
+                               <li><a href="contact.html">Liên hệ với chúng tôi</a></li>
+                               <li><a href="about.html">Về Cosmetics</a></li>
+                               <li><a href="lie.html">Đổi trả sản phẩm</a></li>
+                           </ul>
+                       </div></li>
+               </ul>
+           </div>
+       </div>
+         <div class="d-none d-lg-flex ms-2">
+             <form action="" id="search-box">
+                 <input type="text" id="search-text" placeholder="Bạn muốn tìm gì?"
+                        required>
+                 <button id="search-btn">
+                     <small class="fa fa-search text-body"></small>
+                 </button>
+             </form>
+
+             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                 <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                         <li><a class="dropdown-item" href="/biopage">Thông tin</a></li>
+                         <li><hr class="dropdown-divider" /></li>
+                         <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                         <li><a class="dropdown-item" href="/user/user-orders">My Order</a></li>
+                     </ul>
+                 </li>
+             </ul> <a class="btn-sm-square bg-white rounded-circle ms-3"
+                      href="/user/cart"> <small
+                 class="fa fa-shopping-bag text-body"></small>
+         </a>
          </div>
-       </div>
-       <div class="d-none d-lg-flex ms-2">
-         <form action="" id="search-box">
-           <input type="text" id="search-text" placeholder="Bạn muốn tìm gì?" required>
-           <button id="search-btn"><small class="fa fa-search text-body"></small></button>
-         </form>
-           
-         </a>
-         <a class="btn-sm-square bg-white rounded-circle ms-3" href="admin.html">
-           <small class="fa fa-user text-body"></small>
-         </a>
-         <a class="btn-sm-square bg-white rounded-circle ms-3" href="shopping-cart.html">
-           <small class="fa fa-shopping-bag text-body"></small>
-         </a>
-       </div>
      </div>
    </nav>
  </div>

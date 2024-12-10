@@ -3,13 +3,9 @@ package vn.iotstar.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vn.iotstar.entity.Category;
-import vn.iotstar.entity.Product;
-import vn.iotstar.entity.Shop;
 import vn.iotstar.repository.CategoryRepository;
 import vn.iotstar.repository.ProductRepository;
-import vn.iotstar.repository.ShopRepository;
 import vn.iotstar.service.CategoryService;
-import vn.iotstar.service.ProductService;
 
 import java.util.List;
 import java.util.Optional;
@@ -57,4 +53,6 @@ public class CategoryServiceImpl implements CategoryService {
     public List<Category> findByOwnerId(int productId) {
         return List.of();
     }
+
+  
 }

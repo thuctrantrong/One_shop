@@ -25,34 +25,28 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ProductID")
 	private int productId;
-
-	@Column(nullable = false, length = 100)
+	@Column(columnDefinition = "NVARCHAR(255)")
 	private String name;
 
 	@Column(columnDefinition = "NVARCHAR(MAX)")
 	private String description;
 
-	@Column(nullable = false)
 	private Double price;
 
-	@Column(nullable = false)
 	private int stock;
 
 	@ManyToOne
 	@JoinColumn(name = "CategoryId")
 	private Category category;
-
-	@Column(length = 255)
+	@Column(columnDefinition = "NVARCHAR(255)")
 	private String imageUrl;
 
-	@ManyToOne
-	@JoinColumn(name = "ShopID")
-	private Shop shop;
 
-	@Column(nullable = false, columnDefinition = "DATETIME DEFAULT GETDATE()")
 	private LocalDateTime createdAt;
 
-	@Column(nullable = false)
 	private int condition;
+
+
+	private int soldQuantity;
 
 }
