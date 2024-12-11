@@ -1,28 +1,20 @@
-# 🌐 **XÂY DỰNG WEBSITE KINH DOANH THỜI TRANG NAM 👕**
-
-**Dự án này được xây dựng bởi Nguyễn Trọng Nghĩa**
+# 🌐 **XÂY DỰNG WEBSITE BÁN MỸ PHẨM ONESHOP **
 
 
 
-<img src="/src/main/resources/static/img/background.png" alt="Ảnh mô tả">
-<img src="/src/main/resources/static/img/nice.png" alt="Ảnh mô tả">
-
-
-
-Dự án này được xây dựng bởi Nguyễn Trọng Nghĩa
-https://github.com/TrongNghiakt
+Dự án này được xây dựng bởi các thành viên của nhóm 7 bao gồm Trần Trọng Thức, Nguyễn Trọng Nghĩa và Trần Như Thiện
+https://github.com/thuctrantrong/One_shop
 
 
 
 🚀 Mô Tả Dự Án
-Dự án này nhằm xây dựng một website bán hàng trực tuyến cho các sản phẩm thời trang, với các chức năng nổi bật sau:
+Dự án này nhằm xây dựng một website bán hàng trực tuyến cho các mỹ phẩm, với các chức năng nổi bật sau:
 
 - Quản lý tài khoản người dùng: Quản trị viên có thể kiểm soát các tài khoản người dùng và vô hiệu hóa tài khoản có hành vi bất thường.
 - Quản lý sản phẩm: Cung cấp giao diện để thêm, xóa, sửa sản phẩm.
 - Quản lý danh mục sản phẩm: Tạo, xóa và chỉnh sửa các danh mục sản phẩm.
 - Quản lý đơn hàng: Quản trị viên có thể cập nhật trạng thái đơn hàng của khách hàng.
 - Tìm kiếm và lọc sản phẩm: Người dùng có thể tìm kiếm và lọc sản phẩm theo nhiều tiêu chí như loại danh mục, tên sản phẩm, v.v.
-- Khuyến mãi và giảm giá: Quản trị viên có thể thiết lập mã giảm giá cho sản phẩm.
 - Quản lý đơn hàng đã đặt: Người dùng có thể xem chi tiết đơn hàng, trạng thái và hủy nếu cần.
 - Quản lý tài khoản cá nhân: Người dùng có thể tạo tài khoản, đăng nhập và thay đổi thông tin cá nhân.
 
@@ -39,36 +31,33 @@ Dự án này nhằm xây dựng một website bán hàng trực tuyến cho cá
 
 
 🧑‍💻 Cấu Trúc Thư Mục Dự Án
-Shopping_Cart_Clothes/                           
-│
-├── src/                          
-│   ├── main/                     
-│   │   ├── java/                
-│   │   │   └── com/              
-│   │   │       └── ecom/
-│   │   │           ├── config/      
-│   │   │           ├── controller/  
-│   │   │           ├── model/       
-│   │   │           ├── repository/  
-│   │   │           ├── service/     
-│   │   │           ├── util/        
-│   │   │           └── application.java  
-│   │   ├── resources/         
-│   │   │   ├── static/
-│   │   │   │   ├── css/           
-│   │   │   │   ├── img/             
-│   │   │   │   └── js/             
-│   │   │   ├── template/           
-│   │   │   │   ├── admin/           
-│   │   │   │   ├── user/            
-│   │   │   └── application.properties  
-│   └── test/                   
-│       └── java/
-│           └── com/
-│               └── ecom/
-│                   └── ShoppingCartClothesApplicationTests.java  
-├── pom.xml                      
-└── README.md                    
+One_Shop_final
+├── .idea/
+├── .mvn/
+├── .settings/
+├── src/
+    └── main/
+        ├── java/
+        │   └── vn.iotstar/
+        │       ├── config/
+        │       ├── controller/
+        │       ├── entity/
+        │       ├── repository/
+        │       ├── service/
+        │       └── util/
+        │           └── OneShopApplication.java
+        ├── resources/
+            ├── static/
+            │   ├── css/
+            │   ├── img/
+            │   ├── js/
+            │   ├── lib/
+            │   └── scss/
+            ├── about.html
+            ├── contact.html
+            └── lie.html
+        └── templates/
+        └── Application.properties     
 
 
 
@@ -83,7 +72,7 @@ Cài Đặt Môi Trường Phát Triển 💻:
 
 
 Clone Dự Án và Cài Đặt Dependencies 📦:
-git clone https://github.com/TrongNghiakt/Shopping_Cart_Clothes
+git clone https://github.com/thuctrantrong/One_shop
 mvn clean install
 
 
@@ -91,7 +80,7 @@ mvn clean install
 Cấu Hình Cơ Sở Dữ Liệu 💾:
 Tạo cơ sở dữ liệu trong MySQL, ví dụ: shopping_cart_clothes.
 Cập nhật thông tin kết nối trong application.properties:
-spring.datasource.url=jdbc:mysql://localhost:3306/shopping_cart_clothes
+spring.datasource.url=jdbc:mysql://localhost:3306/One_Shop
 spring.datasource.username=root
 spring.datasource.password=your_password
 
@@ -102,7 +91,7 @@ mvn spring-boot:run
 
 
 
-Truy Cập Website 🌐: Mở trình duyệt và truy cập vào địa chỉ: http://localhost:8080
+Truy Cập Website 🌐: Mở trình duyệt và truy cập vào địa chỉ: http://localhost:9090
 
 
 
